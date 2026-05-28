@@ -78,12 +78,6 @@ I'd rather you hear these from me than discover them:
 - **The scarcity is time-sensitive.** The "business + AI" professional is becoming a recognized category. Today it's rare. In a few years it's more common. The edge is real *now*.
 - **The fusion lives in one head.** That's both the strength and the risk. It's not yet a system you can hire three of. Part of what interests me is making it teachable — which is, again, a coaching problem.
 
-## If we work together
-
-I'm not the person you hire to write your backend. I'm the person you bring in when:
-
-- you have a business problem and the off-the-shelf software almost — but doesn't quite — fit
-- you need someone who can sit with your team, extract what's actually needed, and turn it into working software without a six-month requirements phase
-- you want commercial judgment baked *into* the build, not bolted on afterward
+## The short version
 
 The code is the easy part now. The judgment about what to build is the whole game — and that's the part I spent 15 years learning before AI made the rest possible.
