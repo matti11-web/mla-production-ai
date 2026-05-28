@@ -17,7 +17,7 @@ No source code from client work is published here. Each case study describes the
 | 03 | *Customer Intelligence Layer* | PDF extraction pipeline that turns unstructured supplier/customer documents into queryable D1 rows. Content-stream regex parser, no OCR. | Cloudflare Workers · D1 · TypeScript · custom PDF parser |
 | 04 | *Construction-Industry ERP Platform* | 14-module internal platform built in 3 months: CRM, document signing, knowledge vault, customer intelligence, calculators. | Cloudflare Workers · D1 · Hono · React · Claude |
 | 05 | *Bilingual Sales Companion* | CRM with AI-classified leads, multilingual offers (NL/FR), pipeline automation, post-signature workflows. | React · Zustand · React Query · D1 · Anthropic API |
-| 06 | *Hash-Chain Document Management* | E-signing flow with X.509 cert validation, hash-chain audit log, BeyondFiles sync, and per-document RBAC. | Workers · D1 · Web Crypto · Resend |
+| 06 | *Hash-Chain Document Management* | E-signing flow with X.509 cert validation, hash-chain audit log, sync with existing on-premise vendor DMS, and per-document RBAC. | Workers · D1 · Web Crypto · Resend |
 
 (Cases 02–06 written soon. Pinned project for now: case 01.)
 
@@ -33,6 +33,14 @@ No source code from client work is published here. Each case study describes the
 | Cold-read discipline | LLM-generated brainstorms contain hallucinations indistinguishable from facts. Adversarial cold-read before action is non-negotiable. |
 
 (Full pattern write-ups under `patterns/` — coming.)
+
+---
+
+## Lessons
+
+| | |
+|---|---|
+| [Valuing internal software — a three-lens methodology](lessons/valuing-internal-software.md) | How to put a defensible number on internal software you've built. Rebuild-cost / license-stack-avoidance / strategic-SaaS lenses with international wage benchmarks (US / W-EU / S-EU / E-EU / SEA). Grounded in a real 136K-LOC platform. |
 
 ---
 
