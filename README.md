@@ -17,7 +17,7 @@ No source code from client work is published here. Each case study describes the
 | 03 | *Customer Intelligence Layer* | PDF extraction pipeline that turns unstructured supplier/customer documents into queryable D1 rows. Content-stream regex parser, no OCR. | Cloudflare Workers · D1 · TypeScript · custom PDF parser |
 | 04 | *Construction-Industry ERP Platform* | 14-module internal platform built in 3 months: CRM, document signing, knowledge vault, customer intelligence, calculators. | Cloudflare Workers · D1 · Hono · React · Claude |
 | 05 | *Bilingual Sales Companion* | CRM with AI-classified leads, multilingual offers (NL/FR), pipeline automation, post-signature workflows. | React · Zustand · React Query · D1 · Anthropic API |
-| 06 | *Hash-Chain Document Management* | E-signing flow with X.509 cert validation, hash-chain audit log, sync with existing on-premise vendor DMS, and per-document RBAC. | Workers · D1 · Web Crypto · Resend |
+| 06 | *Hash-Chain Document Management* | E-signing flow with X.509 cert validation, hash-chain audit log, sync with existing cloud-based vendor DMS, and per-document RBAC. | Workers · D1 · Web Crypto · Resend |
 
 (Cases 02–06 written soon. Pinned project for now: case 01.)
 

@@ -99,7 +99,7 @@ What you'd pay annually to buy off-the-shelf SaaS equivalents.
 | Module | SaaS equivalent | Annual at 40 seats |
 |---|---|---:|
 | CRM | HubSpot Sales Pro / Pipedrive Advanced | €18–€30K |
-| DMS + sync with existing on-prem vendor DMS | M-Files / DocuWare + custom integrator | €15–€25K + €30K one-off |
+| DMS + sync with existing cloud-based vendor DMS | M-Files / DocuWare + custom integrator | €15–€25K + €30K one-off |
 | Knowledge base + AI Q&A | Notion AI + Glean Lite | €12–€20K |
 | BI / executive dashboard | Power BI Premium + dev time | €8–€12K |
 | Meeting recording + summary | Fathom Team / Read.ai | €6–€10K |
@@ -188,7 +188,7 @@ These are where commercial software has nothing equivalent in the target industr
 
 Each was 2–12 weeks of work. An agency would have refused them or charged €40K–€100K each. Together they explain why the platform's defensible value sits at the top of the rebuild-cost range, not the middle.
 
-1. **Sync with existing on-premise DMS software from sector vendor.** The vendor's API requires institutional knowledge to navigate (undocumented response envelopes, ID-namespace quirks, size-aware streaming for files >80MB). Multi-bug cascade fixed across 3 weeks. No SaaS bridges this.
+1. **Sync with existing cloud-based DMS software from sector vendor.** The vendor's API requires institutional knowledge to navigate (undocumented response envelopes, ID-namespace quirks, size-aware streaming for files >80MB). Multi-bug cascade fixed across 3 weeks. No SaaS bridges this.
 
 2. **Bridge between modern web stack and a C++-coded legacy 3D-configurator.** Reverse-engineering effort on a 20-year-old proprietary tool. Nobody else can do it without your codebase analysis.
 
