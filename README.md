@@ -62,4 +62,4 @@ If a case study is interesting and you want more detail than is shareable here, 
 - 15 years across entrepreneurship (founded multiple SMEs), business-strategy consulting, sales leadership, and coaching (sales teams, real-estate agents, founders).
 - Today: Commercial Director at Ostyn NV (aluminium, timber, container construction) — and turning business strategy into working software with AI.
 - The fusion: deep commercial judgment × coaching/requirement-extraction × AI-and-software fluency. See [How I work](how-i-work.md).
-- [LinkedIn](https://www.linkedin.com/in/matthiaslabeeuw) · [matthias-skills marketplace](https://github.com/matti11-web/matthias-skills) (140+ Claude Code skills across 13 domain packs)
+- [LinkedIn](https://www.linkedin.com/in/matthias-labeeuw-6576694b) · [matthias-skills marketplace](https://github.com/matti11-web/matthias-skills) (140+ Claude Code skills across 13 domain packs)
