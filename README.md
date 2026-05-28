@@ -2,7 +2,9 @@
 
 Production AI projects, architecture patterns, and lessons learned from building ~80 applied-AI tools in 2025–2026.
 
-I'm Matthias Labeeuw — Commercial Director at a Belgian construction SME by day, applied-AI builder by night and weekend. This repo documents what I built, how I built it, and what I learned trying to make LLMs useful in real B2B workflows where margin and correctness matter.
+I'm Matthias Labeeuw — **a business strategist and coach, not a developer.** For 15 years I built companies, coached teams, and drove commercial strategy. Then AI made software buildable by people who deeply understand business — and I had exactly the missing half. This repo is the proof: ~80 production tools built solo with AI, documented as case studies, architecture, and lessons.
+
+→ **[How I work](how-i-work.md)** — the business-strategy × AI cocktail, and why the bottleneck was never the code.
 
 No source code from client work is published here. Each case study describes the architecture, technical decisions, outcomes, and lessons in a sanitized form. The goal is to show *how I think* and *what works*, not to leak proprietary implementations.
 
@@ -57,6 +59,7 @@ If a case study is interesting and you want more detail than is shareable here, 
 ## About me
 
 - 35, Belgian. Native Dutch, professional French and English.
-- Commercial Director at Ostyn NV (aluminium, timber, container construction)
-- Three intersecting tracks: commercial leadership · applied AI engineering · writing about both
+- 15 years across entrepreneurship (founded multiple SMEs), business-strategy consulting, sales leadership, and coaching (sales teams, real-estate agents, founders).
+- Today: Commercial Director at Ostyn NV (aluminium, timber, container construction) — and turning business strategy into working software with AI.
+- The fusion: deep commercial judgment × coaching/requirement-extraction × AI-and-software fluency. See [How I work](how-i-work.md).
 - [LinkedIn](https://www.linkedin.com/in/matthiaslabeeuw) · [matthias-skills marketplace](https://github.com/matti11-web/matthias-skills) (140+ Claude Code skills across 13 domain packs)
