@@ -15,13 +15,11 @@ No source code from client work is published here. Each case study describes the
 | # | Project | What it does | Stack |
 |---|---|---|---|
 | [01](case-studies/01-semantic-memory-recall.md) | **Semantic Memory (`/recall`)** | Cohere-embedded, RAG-style search over ~6K personal-memory chunks. Replaces grep for fuzzy concept lookup across rules, skills, and project notes. | Python · Cohere `embed-v4.0` + `rerank-v3.5` · numpy |
-| 02 | *Autonomous Multi-PR Pipelines* | PowerShell wrapper + Claude Code spawning that ships 5–10 PRs overnight against a roadmap, with self-review gates and reviewer-agents. 6× validated. | PowerShell · Claude Code · gh CLI · code-reviewer agent |
-| 03 | *Customer Intelligence Layer* | PDF extraction pipeline that turns unstructured supplier/customer documents into queryable D1 rows. Content-stream regex parser, no OCR. | Cloudflare Workers · D1 · TypeScript · custom PDF parser |
-| 04 | *Construction-Industry ERP Platform* | 14-module internal platform built in 3 months: CRM, document signing, knowledge vault, customer intelligence, calculators. | Cloudflare Workers · D1 · Hono · React · Claude |
-| 05 | *Bilingual Sales Companion* | CRM with AI-classified leads, multilingual offers (NL/FR), pipeline automation, post-signature workflows. | React · Zustand · React Query · D1 · Anthropic API |
-| 06 | *Hash-Chain Document Management* | E-signing flow with X.509 cert validation, hash-chain audit log, sync with existing cloud-based vendor DMS, and per-document RBAC. | Workers · D1 · Web Crypto · Resend |
-
-(Cases 02–06 written soon. Pinned project for now: case 01.)
+| [02](case-studies/02-autonomous-multi-pr-pipelines.md) | **Autonomous Multi-PR Pipelines** | Roadmap-to-PR orchestration pattern: isolated feature branches, local checks, reviewer-agent gates, and human-owned merge decisions. | PowerShell · Claude Code · gh CLI · reviewer agents |
+| [03](case-studies/03-customer-intelligence-layer.md) | **Customer Intelligence Layer** | PDF extraction pipeline that turns operational documents into comparable, queryable workflow data. Content-stream parser, no OCR. | Cloudflare Workers · D1 · TypeScript · custom PDF parser |
+| [04](case-studies/04-construction-erp-platform.md) | **Construction-Industry ERP Platform** | 14-module internal platform built in 3 months: CRM, document signing, knowledge vault, customer intelligence, calculators. | Cloudflare Workers · D1 · Hono · React · Claude |
+| [05](case-studies/05-bilingual-sales-companion.md) | **Bilingual Sales Companion** | CRM with AI-classified leads, NL/FR workflows, vector related-record discovery, pipeline automation, and post-signature flows. | React · Zustand · React Query · D1 · Anthropic API |
+| [06](case-studies/06-hash-chain-document-signing.md) | **Hash-Chain Document Signing** | E-signing flow with signed-PDF generation, completion certificates, hash-chain audit events, and signed-artifact preference. | Workers · D1 · R2 · Web Crypto · Resend |
 
 ---
 
@@ -60,6 +58,6 @@ If a case study is interesting and you want more detail than is shareable here, 
 
 - 35, Belgian. Native Dutch, professional French and English.
 - 15 years across entrepreneurship (founded multiple SMEs), business-strategy consulting, sales leadership, and coaching (sales teams, real-estate agents, founders).
-- Today: Commercial Director at Ostyn NV (aluminium, timber, container construction) — and turning business strategy into working software with AI.
+- Today: Commercial Director at a European construction SME — and turning business strategy into working software with AI.
 - The fusion: deep commercial judgment × coaching/requirement-extraction × AI-and-software fluency. See [How I work](how-i-work.md).
 - [LinkedIn](https://www.linkedin.com/in/matthias-labeeuw-6576694b) · [matthias-skills marketplace](https://github.com/matti11-web/matthias-skills) (140+ Claude Code skills across 13 domain packs)
