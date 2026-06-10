@@ -20,6 +20,7 @@ No source code from client work is published here. Each case study describes the
 | [04](case-studies/04-construction-erp-platform.md) | **Construction-Industry ERP Platform** | 14-module internal platform built in 3 months: CRM, document signing, knowledge vault, customer intelligence, calculators. | Cloudflare Workers · D1 · Hono · React · Claude |
 | [05](case-studies/05-bilingual-sales-companion.md) | **Bilingual Sales Companion** | CRM with AI-classified leads, NL/FR workflows, vector related-record discovery, pipeline automation, and post-signature flows. | React · Zustand · React Query · D1 · Anthropic API |
 | [06](case-studies/06-hash-chain-document-signing.md) | **Hash-Chain Document Signing** | E-signing flow with signed-PDF generation, completion certificates, hash-chain audit events, and signed-artifact preference. | Workers · D1 · R2 · Web Crypto · Resend |
+| [07](case-studies/07-english-media-brand-solo.md) | **English-Language Media Brand, Solo** | Full media-brand build for a sim-racing team: identity system, Astro website, shorts-first content pipeline, YouTube-API analytics loop. Capability case, not a growth story. | Astro · Cloudflare · Python · YouTube APIs |
 
 ---
 
