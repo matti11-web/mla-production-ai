@@ -2,7 +2,7 @@
 
 A single-file semantic search index that lets me find what I wrote three months ago by *concept*, not keyword. Built because grep was missing things that mattered.
 
-**Status:** In active production use against my own ~6,000-chunk personal corpus (memory + rules + skills + project dev-docs). Cohere `embed-v4.0` (1,536-dim) for embedding, optional `rerank-v3.5` for high-precision queries, numpy for brute-force cosine similarity.
+**Status:** In active daily use against my own ~7,300-chunk personal corpus (memory + rules + skills + project dev-docs; measured June 2026). Cohere `embed-v4.0` (1,536-dim) for embedding, optional `rerank-v3.5` for high-precision queries, numpy for brute-force cosine similarity.
 
 ---
 
@@ -33,7 +33,7 @@ A semantic search index over the whole corpus would mean: query by concept, get 
 
 ```
                     ┌─────────────────────────────────────────┐
-                    │ Corpus (~640 .md files, ~6 K chunks)    │
+                    │ Corpus (~780 .md files, ~7.3 K chunks)  │
                     │ memory/ + rules/ + skills/ + dev-docs/  │
                     └────────────────┬────────────────────────┘
                                      │ reindex.py (--delta or full)
@@ -44,8 +44,8 @@ A semantic search index over the whole corpus would mean: query by concept, get 
                                      │   └─ L2-normalize, write to disk
                                      ▼
                     ┌─────────────────────────────────────────┐
-                    │ index.npz (21 MB) + chunks.jsonl (9 MB) │
-                    │ 5,950 vectors × 1,536 dims, float32     │
+                    │ index.npz (27 MB) + chunks.jsonl (12 MB)│
+                    │ 7,332 vectors × 1,536 dims, float32     │
                     └────────────────┬────────────────────────┘
                                      │ recall.py "<query>"
                                      │   ├─ Embed query (single Cohere call)
@@ -71,7 +71,7 @@ All three are zero-setup beyond pointing at the index.
 
 ### 1. Cosine over a vector DB
 
-Brute-force cosine via numpy is 6,000 vectors × 1,536 dims = 9.2M dot products per query. On a modern CPU: ~5 ms. Vector DBs are the right answer at 100K+ vectors; below that, a flat numpy array is faster, simpler, and has zero ops cost.
+Brute-force cosine via numpy is ~7,300 vectors × 1,536 dims = ~11M multiply-accumulates per query. On a modern CPU: ~5 ms. Vector DBs are the right answer at 100K+ vectors; below that, a flat numpy array is faster, simpler, and has zero ops cost.
 
 ### 2. Chunk per `##` section, not per file or sliding window
 
@@ -112,9 +112,9 @@ Memory files use `path.stem` as chunk ID (`project_recall::00-architecture`). Sk
 
 | Metric | Value |
 |---|---|
-| Corpus indexed | ~6,000 chunks across ~640 files |
-| Sources | personal memory (~580) · project rules (~140) · local skills (~55) · plugin-marketplace skills (~2,790) · project dev-docs (~700) |
-| Index size on disk | 21 MB `index.npz` + 9 MB `chunks.jsonl` |
+| Corpus indexed | 7,332 chunks across 781 files (measured June 2026) |
+| Sources | personal memory (~670) · project rules (~145) · local skills (~55) · plugin-marketplace skills (~2,790) · project dev-docs (~3,670) |
+| Index size on disk | 27 MB `index.npz` + 12 MB `chunks.jsonl` |
 | Cost: single query | ~30 query tokens = $0.000004 |
 | Cost: query with `--rerank` | + one Cohere rerank call ≈ $0.001 |
 | Cost: full reindex | ~1.3 M tokens ≈ $0.16 |
