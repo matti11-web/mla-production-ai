@@ -2,7 +2,7 @@
 
 A local orchestration pattern for turning a roadmap into several independent pull requests, with each PR built, reviewed, and left ready for human merge. Built because one long LLM session is the wrong shape for multi-workstream delivery.
 
-**Status:** In active use for my own infrastructure and skill-system work. The pattern has been validated across six roadmap runs: one orchestrator process decomposes the work, worker sessions implement isolated branches, and reviewer agents gate the results before I merge anything.
+**Status:** In active use across application and infrastructure work. The pattern has been validated across six roadmap runs: a wrapper loop spawns one fresh large-context implementation session per iteration, each iteration works one item on its own branch and opens a PR behind reviewer-agent gates, and state is handed between iterations through a progress artifact. I merge; the loop does not.
 
 ---
 
@@ -36,33 +36,35 @@ I needed a workflow that could safely run 5-10 small implementation tracks overn
 ## Architecture
 
 ```text
-                Roadmap / work-item register
-                           |
-                           v
-              Orchestrator PowerShell wrapper
-                           |
-        +------------------+------------------+
-        |                  |                  |
-        v                  v                  v
- Worker session A    Worker session B    Worker session C
- feature branch      feature branch      feature branch
- single WI           single WI           single WI
-        |                  |                  |
-        v                  v                  v
- Local checks        Local checks        Local checks
-        |                  |                  |
-        v                  v                  v
- code-reviewer       code-reviewer       code-reviewer
- security-reviewer   security-reviewer   security-reviewer
- where needed        where needed        where needed
-        |                  |                  |
-        +------------------+------------------+
-                           |
-                           v
-              Human review, merge, and sequencing
+              Roadmap / work-item register
+                         |
+                         v
+            PowerShell wrapper loop (orchestrator)
+                         |
+            +------------v-------------+
+            |  Iteration N             |
+            |  fresh large-context     |
+            |  implementation session  |
+            |  one WI, one branch      |
+            |                          |
+            |  local checks            |
+            |  code-reviewer gate      |
+            |  security-reviewer       |
+            |  where needed            |
+            |                          |
+            |  push branch + open PR   |
+            |  update progress file    |
+            +------------+-------------+
+                         |
+              exit status -> next iteration
+              (N+1 reads the progress file
+               and picks the next WI)
+                         |
+                         v
+            Human review, merge, and sequencing
 ```
 
-The important part is not "agents in parallel." The important part is the contract around them: every worker gets a bounded scope, a branch name, acceptance criteria, test commands, and a no-go list. The orchestrator is allowed to create work; it is not allowed to erase judgment.
+The loop is sequential by design: one fresh session per iteration, handing off through a durable progress artifact instead of a shared chat context. The important part is the contract around each iteration: a bounded scope, a branch name, acceptance criteria, test commands, and a no-go list. The orchestrator is allowed to create work; it is not allowed to erase judgment.
 
 ---
 
@@ -84,11 +86,11 @@ The pipeline does not treat "tests passed" as enough. For code changes, a code-r
 
 This catches a different class of issue than the compiler: scope creep, missing rollback, weak invariants, unsafe defaults, and "this works but should not exist."
 
-### 4. Human-owned shared actions
+### 4. Human-owned merge and shared actions
 
-Opening a PR, pushing a branch, deploying, moving live services, or deleting files is shared-state work. Those actions are gated. The automation can prepare a branch and summarize the diff, but final publication remains a conscious human step.
+The automation pushes branches and opens PRs itself — behind reviewer-agent gates. What it does not own: merging, deploying, moving live services, or deleting shared state. Those remain conscious human steps.
 
-That sounds slower. In practice it is faster, because it preserves trust. I can review five clean, scoped diffs in less time than one ambitious mess.
+That sounds slower. In practice it is faster, because it preserves trust. I can review five clean, scoped PRs in less time than one ambitious mess.
 
 ---
 
@@ -97,10 +99,10 @@ That sounds slower. In practice it is faster, because it preserves trust. I can 
 | Metric | Value |
 |---|---:|
 | Validated roadmap runs | 6 |
-| Typical parallel branches per run | 3-8 |
+| PRs shipped per run | 5-10, sequential iterations |
 | Target PR shape | one work item, one branch, one review surface |
 | Human merge gate | always |
-| Best-fit work | refactors, rule-to-skill migrations, docs architecture, testable infrastructure fixes |
+| Best-fit work | scoped feature work with per-WI acceptance criteria, refactors, testable infrastructure fixes |
 | Poor-fit work | ambiguous product strategy, live service migration, destructive cleanup, legal/commercial decisions |
 
 **Real win:** the bottleneck moved from "write all the code myself" to "make good merge decisions." That is the right bottleneck. It lets AI increase throughput without making the repository feel knowable only to the agent that produced it.
@@ -115,9 +117,9 @@ The system is autonomous only inside a fenced work item. It is not autonomous in
 
 The useful framing is: autonomous implementation, human release judgment.
 
-### Parallelism only helps after dependencies are honest
+### Sequencing only works after dependencies are honest
 
-If work item B depends on work item A, running both in parallel creates merge debt. The orchestrator first has to identify what can actually be parallelized. Otherwise it manufactures speed on paper and delay in review.
+If work item B depends on work item A, the roadmap has to say so — otherwise iteration B builds on a branch that does not exist yet, or quietly duplicates work. The decomposition step is where speed is actually won or lost, not the implementation step.
 
 ### Small PRs are the safety mechanism
 
@@ -136,4 +138,4 @@ The reusable pattern is the contract: roadmap decomposition, branch isolation, e
 
 ---
 
-**Built:** 2026-05-29, after a workspace context-architecture cleanup exposed that manual single-session refactors were no longer the limiting factor.
+**Codified:** May 2026, as a reusable skill after three validated overnight runs; six runs validated to date (April–May 2026).

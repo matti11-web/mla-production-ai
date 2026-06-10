@@ -2,7 +2,7 @@
 
 A document-intelligence layer that turns operational PDFs from a European construction SME into structured, queryable records. No OCR, no manual re-entry, and no generic "chat with your PDF" abstraction where deterministic parsing is the better tool.
 
-**Status:** Production architecture proven across order-form parsing, comparison workflows, and CRM intelligence design. The public version is sanitized: vendor names, schemas, customer data, and proprietary document examples are intentionally omitted.
+**Status:** Deployed and in validation use across order-form parsing, comparison workflows, and CRM intelligence design; team adoption is ongoing. The public version is sanitized: vendor names, schemas, customer data, and proprietary document examples are intentionally omitted.
 
 ---
 
@@ -81,9 +81,9 @@ That intermediate object is the contract between extraction, comparison, UI, and
 
 ### 3. Exact comparison for contract-critical fields
 
-For some categories, any difference is meaningful: dimensions, quantities, product choices, colors, and signed-document totals. The comparison layer treats those as exact-match fields.
+For some categories, any difference is meaningful: dimensions, quantities, product choices, colors, and signed-document totals. The comparison layer treats those as exact-match fields, with only a narrow numeric tolerance where rounding artifacts differ between sources.
 
-When a mismatch is intentional, the user can mark it as conscious and explain why. Without that explanation, the workflow blocks the "ready" state.
+When a mismatch is intentional, the user can mark it as conscious and explain why. Without that explanation, the workflow blocks the "ready" state. And where parse divergence makes automated matching unreliable, the system falls back to explicit manual confirmation rather than pretending it can compare.
 
 ### 4. "Not comparable" is a first-class result
 
@@ -101,8 +101,8 @@ That split keeps cost low and makes the system auditable.
 
 | Metric | Value |
 |---|---:|
-| Extracted order-form field classes | 50+ |
-| Legacy config files analyzed during parser research | 1,500+ |
+| Extracted order-form fields | structured set spanning parties, project metadata, dimensions, products, totals |
+| Legacy config files analyzed during parser research | 800+ |
 | Runtime target | Cloudflare Workers, 128 MB memory |
 | Comparison style | exact match for critical fields |
 | Human override | required motivation for deviations |
@@ -128,7 +128,7 @@ The business value comes from closing the loop inside the workflow.
 
 ### "No tolerance" is a product decision, not a technical one
 
-For contract-derived documents, approximate equality can hide the exact problem the tool is meant to catch. The decision to require exact matches on critical fields came from the business process, not from engineering preference.
+For contract-derived documents, approximate equality can hide the exact problem the tool is meant to catch. The decision to require exact matches on critical fields — and to demand manual confirmation instead of silently widening tolerances where extraction is unreliable — came from the business process, not from engineering preference.
 
 ---
 

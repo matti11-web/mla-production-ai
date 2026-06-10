@@ -188,9 +188,9 @@ These are where commercial software has nothing equivalent in the target industr
 
 Each was 2–12 weeks of work. An agency would have refused them or charged €40K–€100K each. Together they explain why the platform's defensible value sits at the top of the rebuild-cost range, not the middle.
 
-1. **Sync with existing cloud-based DMS software from sector vendor.** The vendor's API requires institutional knowledge to navigate (undocumented response envelopes, ID-namespace quirks, size-aware streaming for files >80MB). Multi-bug cascade fixed across 3 weeks. No SaaS bridges this.
+1. **Sync with existing cloud-based DMS software from sector vendor.** The vendor's API requires institutional knowledge to navigate (undocumented response envelopes, ID-namespace quirks, size-aware streaming for files >80MB). Fixed through a multi-round debugging cascade. No SaaS bridges this.
 
-2. **Bridge between modern web stack and a C++-coded legacy 3D-configurator.** Reverse-engineering effort on a 20-year-old proprietary tool. Nobody else can do it without your codebase analysis.
+2. **Bridge between modern web stack and a C++-coded legacy 3D-configurator.** Reverse-engineering effort on a decades-old proprietary tool. Nobody else can do it without your codebase analysis.
 
 3. **Reconciliation: PDF order line items ↔ engineering bill-of-materials with image normalization.** Industry-specific. Generic SaaS handles drawings or BOMs but not the reconciliation between them.
 
