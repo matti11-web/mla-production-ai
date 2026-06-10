@@ -61,4 +61,4 @@ Some detail stays private by design.
 - 15 years across entrepreneurship (founded multiple SMEs), business-strategy consulting, sales leadership, and coaching (sales teams, real-estate agents, founders).
 - Today: Commercial Director at a European construction SME — and turning business strategy into working software with AI.
 - The fusion: deep commercial judgment × coaching/requirement-extraction × AI-and-software fluency. See [How I work](how-i-work.md).
-- [LinkedIn](https://www.linkedin.com/in/matthias-labeeuw-6576694b) · [matthias-skills marketplace](https://github.com/matti11-web/matthias-skills) (140+ Claude Code skills across 13 domain packs)
+- [LinkedIn](https://www.linkedin.com/in/matthias-labeeuw-6576694b) · Plus a 140+ skill Claude Code toolkit across 13 domain packs — kept private (it encodes client-specific domain knowledge); the reusable patterns are documented in the case studies here.
