@@ -2,7 +2,7 @@
 
 A CRM and sales-operations companion for a bilingual construction sales team: leads, contacts, pipeline stages, quotes, AI classification, related-record discovery, signing flows, and post-signature automation.
 
-**Status:** Production system for internal use. Public details are sanitized around architecture and product decisions; customer records, employee-specific performance details, schemas, and proprietary workflows are not included.
+**Status:** Built and deployed for internal use; team rollout and adoption are ongoing. Public details are sanitized around architecture and product decisions; customer records, employee-specific performance details, schemas, and proprietary workflows are not included.
 
 ---
 
@@ -18,7 +18,7 @@ The sales workflow had outgrown a simple lead table. The real operating question
 - Does the customer need Dutch or French communication?
 - Which follow-up should happen after signature?
 
-Generic CRMs can track some of that. The missing layer was construction-specific sales intelligence and bilingual workflow automation that matched how the team actually works.
+Generic CRMs can track some of that. The missing layer was construction-specific sales intelligence and bilingual workflow automation that matches how the sales process actually runs.
 
 ---
 
@@ -37,7 +37,7 @@ Generic CRMs can track some of that. The missing layer was construction-specific
 
 ```text
           Lead creation
- manual / webhook / email
+ manual / webhook / email (planned)
                |
                v
         Normalize input
@@ -101,8 +101,7 @@ Customer-facing surfaces and internal labels have to reflect the language of the
 | Metric | Value |
 |---|---:|
 | Historical leads considered in AI-intelligence design | ~8,500 |
-| New lead volume modeled | ~50/day |
-| Data language mix modeled | ~65% NL / ~30% FR / ~5% mixed or EN |
+| Data language mix | mixed NL/FR, with occasional EN |
 | Related-record pattern | vector search over stored lead embeddings |
 | Classification model pattern | constrained JSON suggestions |
 | Cost target for AI intelligence | low single-digit euros/month depending on provider |
@@ -125,7 +124,7 @@ If an AI classifier writes directly into canonical fields, it creates invisible 
 
 ### Small-team CRMs should be workflow-specific
 
-For a 10-person team, the advantage is not more generic CRM features. The advantage is encoding the exact few workflows that matter: lead intake, quote flow, signature state, follow-up, and bilingual customer handling.
+For a small team, the advantage is not more generic CRM features. The advantage is encoding the exact few workflows that matter: lead intake, quote flow, signature state, follow-up, and bilingual customer handling.
 
 ### Legacy imports are not clean training data
 

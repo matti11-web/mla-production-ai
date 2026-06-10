@@ -1,8 +1,8 @@
 # Matthias Labeeuw — Production AI
 
-Production AI projects, architecture patterns, and lessons learned from building ~80 applied-AI tools in 2025–2026.
+Production AI projects, architecture patterns, and lessons learned from building a 14-module internal business platform and a 140+ skill AI toolkit — solo, since February 2026.
 
-I'm Matthias Labeeuw — **a business strategist and coach, not a developer.** For 15 years I built companies, coached teams, and drove commercial strategy. Then AI made software buildable by people who deeply understand business — and I had exactly the missing half. This repo is the proof: ~80 production tools built solo with AI, documented as case studies, architecture, and lessons.
+I'm Matthias Labeeuw — **a business strategist and coach, not a developer.** For 15 years I built companies, coached teams, and drove commercial strategy. Then AI made software buildable by people who deeply understand business — and I had exactly the missing half. This repo is the proof: a 14-module internal platform, autonomous build pipelines, and 140+ reusable AI skills, built solo with AI — documented as case studies, architecture, and lessons.
 
 → **[How I work](how-i-work.md)** — the business-strategy × AI cocktail, and why the bottleneck was never the code.
 
@@ -14,7 +14,7 @@ No source code from client work is published here. Each case study describes the
 
 | # | Project | What it does | Stack |
 |---|---|---|---|
-| [01](case-studies/01-semantic-memory-recall.md) | **Semantic Memory (`/recall`)** | Cohere-embedded, RAG-style search over ~6K personal-memory chunks. Replaces grep for fuzzy concept lookup across rules, skills, and project notes. | Python · Cohere `embed-v4.0` + `rerank-v3.5` · numpy |
+| [01](case-studies/01-semantic-memory-recall.md) | **Semantic Memory (`/recall`)** | Cohere-embedded, RAG-style search over 7K+ personal-knowledge chunks. Replaces grep for fuzzy concept lookup across rules, skills, and project notes. | Python · Cohere `embed-v4.0` + `rerank-v3.5` · numpy |
 | [02](case-studies/02-autonomous-multi-pr-pipelines.md) | **Autonomous Multi-PR Pipelines** | Roadmap-to-PR orchestration pattern: isolated feature branches, local checks, reviewer-agent gates, and human-owned merge decisions. | PowerShell · Claude Code · gh CLI · reviewer agents |
 | [03](case-studies/03-customer-intelligence-layer.md) | **Customer Intelligence Layer** | PDF extraction pipeline that turns operational documents into comparable, queryable workflow data. Content-stream parser, no OCR. | Cloudflare Workers · D1 · TypeScript · custom PDF parser |
 | [04](case-studies/04-construction-erp-platform.md) | **Construction-Industry ERP Platform** | 14-module internal platform built in 3 months: CRM, document signing, knowledge vault, customer intelligence, calculators. | Cloudflare Workers · D1 · Hono · React · Claude |
@@ -27,7 +27,7 @@ No source code from client work is published here. Each case study describes the
 
 | Pattern | Why it works |
 |---|---|
-| Cloudflare Workers + D1 + Hono | Edge-first, EU residency by default, sub-50ms cold start, zero servers to manage. Tradeoff: 128 MB memory cap forces stream-based file handling for anything >80 MB. |
+| Cloudflare Workers + D1 + Hono | Edge-first, EU data-location options (D1 location hints), sub-50ms cold start, zero servers to manage. Tradeoff: 128 MB memory cap forces stream-based file handling for anything >80 MB. |
 | Claude Code skills as plugin marketplaces | Skills compose like Unix tools. Domain knowledge (e.g. construction pricing) lives next to engineering skills (e.g. Hono routing) without conflict. |
 | Multi-agent orchestration via Task tool | Use Opus for architecture + synthesis, Sonnet for parallel execution. Single agent always loses to specialized agents on long-context refactors. |
 | Cold-read discipline | LLM-generated brainstorms contain hallucinations indistinguishable from facts. Adversarial cold-read before action is non-negotiable. |
@@ -50,7 +50,7 @@ No source code from client work is published here. Each case study describes the
 - Anything covered by an employer/client IP arrangement
 - Internal business decisions, vendor negotiations, or financials
 
-If a case study is interesting and you want more detail than is shareable here, the right path is a conversation, not more public detail.
+Some detail stays private by design.
 
 ---
 

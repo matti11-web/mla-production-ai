@@ -27,7 +27,7 @@ The alternative was to build a platform layer that kept existing systems where t
 ## Constraints that shaped the design
 
 1. **Solo builder.** The architecture had to be maintainable by one person, not a department.
-2. **Small user base.** Roughly 10-20 internal users. Enterprise architecture would have been ceremony.
+2. **Small internal audience.** Designed for a 10-40 person organization; team adoption is ongoing. Enterprise architecture would have been ceremony.
 3. **Cloudflare-first.** Workers, D1, R2, Queues, and service bindings fit the budget and operational profile.
 4. **Existing systems stay.** The platform integrates with vendor DMS and legacy calculation workflows instead of pretending they can be replaced overnight.
 5. **Bilingual by default.** Dutch-first, French-second, with English only where useful for developer/admin surfaces.
@@ -116,7 +116,7 @@ AI is used for classification, summarization, search, code generation, and requi
 | DB migrations measured | ~348 |
 | Build window | roughly 3 months for the core platform wave |
 
-Module breadth includes CRM, document signing, DMS sync, knowledge vault, pre-analysis, calculators, customer intelligence, meetings, product sheets, training, quality, planning, and director workflows.
+Module breadth includes CRM, document signing, DMS sync, knowledge vault, pre-analysis, calculators, customer intelligence, meetings, product sheets, training, feedback, planning, and director workflows.
 
 ---
 
@@ -124,7 +124,7 @@ Module breadth includes CRM, document signing, DMS sync, knowledge vault, pre-an
 
 ### Internal software value is not measured only by seats
 
-For a 10-person company, a SaaS-style per-seat comparison understates value. The platform replaces workflow gaps that SaaS tools do not cover at SME scale. The better valuation lenses are rebuild cost, avoided license stack, and strategic optionality.
+For an SME of this size, a SaaS-style per-seat comparison understates value. The platform replaces workflow gaps that SaaS tools do not cover at SME scale. The better valuation lenses are rebuild cost, avoided license stack, and strategic optionality.
 
 ### The hidden asset is domain compression
 

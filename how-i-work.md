@@ -50,7 +50,7 @@ business knows the need
                → rebuild
 ```
 
-Industry data (Standish CHAOS reports) traces ~40% of software-project failure to requirements and communication — **not** technical difficulty. The expensive part was never the code. It was the distance between knowing what to build and building it.
+Industry research (the Standish CHAOS reports) has long traced a large share of software-project failure to requirements and communication — **not** technical difficulty. The expensive part was never the code. It was the distance between knowing what to build and building it.
 
 I collapse that distance into one head. I am the stakeholder, the strategist, the requirement-extractor, and — via AI — the builder. No handoff. No telephone game. No "the business wanted X, we built Y."
 
@@ -66,7 +66,7 @@ AI commoditizes *writing code*. It does **not** commoditize *knowing what to bui
 
 ## Proof, not claim
 
-I'd rather show than assert. This repo documents real production systems — a 136K-LOC platform, a semantic-memory search system, autonomous multi-PR build pipelines, PDF-extraction layers — built in months, solo, with AI.
+I'd rather show than assert. This repo documents real deployed systems — a 136K-LOC platform, a semantic-memory search system, autonomous multi-PR build pipelines, PDF-extraction layers — built in months, solo, with AI.
 
 See the [case studies](case-studies/) and the [valuation methodology](lessons/valuing-internal-software.md).
 
