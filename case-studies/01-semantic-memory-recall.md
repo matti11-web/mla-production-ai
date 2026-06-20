@@ -135,9 +135,9 @@ A production API key with no rate limit would have hidden a class of bugs. The t
 
 ### Index freshness is a real problem
 
-The index does NOT auto-update. If I edit memory and forget to `--delta` reindex, the next query returns stale results. Solved with two patterns: (1) a `--delta` flag that only re-embeds files with `mtime > index.npz mtime` (reuses cached embeddings for unchanged files — 99% of corpus on a typical edit), and (2) a verbal habit of running `reindex.py --delta` after significant memory edits.
+The index does not refresh itself, so freshness has to be engineered — and the honest history is that I shipped this with a manual gap and only later closed it. Two layers handle it: (1) a `--delta` flag that only re-embeds files with `mtime > index.npz mtime` (reuses cached embeddings for unchanged files — ~99% of the corpus on a typical edit), and (2) **a session-end hook that runs the delta automatically** after any session that touched the corpus, with a weekly cron as a backstop. Originally layer (2) was just a verbal habit of running `reindex.py --delta` by hand — that was the weak link, and it's now removed.
 
-Open question: should reindex be triggered on a git pre-commit hook or session-close? Currently manual. Trade-off is API cost vs freshness.
+**Resolved (2026-06-19):** reindex is triggered on session-close via a Stop hook (plus the weekly cron safety-net), not left to manual habit. The API-cost-vs-freshness trade-off lands fine because `--delta` makes a typical refresh ~$0.006. *(This case study originally listed this as an open question with a manual workflow; updating it to match the running system — the changelog said "manual", the build now auto-updates.)*
 
 ### Rerank score ≠ cosine score
 
