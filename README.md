@@ -37,14 +37,6 @@ No source code from client work is published here. Each case study describes the
 
 ---
 
-## Lessons
-
-| | |
-|---|---|
-| [Valuing internal software — a three-lens methodology](lessons/valuing-internal-software.md) | How to put a defensible number on internal software you've built. Rebuild-cost / license-stack-avoidance / strategic-SaaS lenses with international wage benchmarks (US / W-EU / S-EU / E-EU / SEA). Grounded in a real 136K-LOC platform. |
-
----
-
 ## What I'm not publishing here
 
 - Client source code, schemas, customer data, pricing tables
