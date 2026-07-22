@@ -2,7 +2,7 @@
 
 A single-file semantic search index that lets me find what I wrote three months ago by *concept*, not keyword. Built because grep was missing things that mattered.
 
-**Status:** In active daily use against my own ~7,300-chunk personal corpus (memory + rules + skills + project dev-docs; measured June 2026). Cohere `embed-v4.0` (1,536-dim) for embedding, optional `rerank-v3.5` for high-precision queries, numpy for brute-force cosine similarity.
+**Status:** In active daily use against my own ~16,900-chunk personal corpus (memory + rules + skills + project dev-docs; measured July 2026 — the corpus more than doubled since the June figure in earlier versions of this document, driven almost entirely by project dev-docs). Cohere `embed-v4.0` (1,536-dim) for embedding, optional `rerank-v3.5` for high-precision queries, numpy for brute-force cosine similarity.
 
 ---
 
@@ -33,7 +33,7 @@ A semantic search index over the whole corpus would mean: query by concept, get 
 
 ```
                     ┌─────────────────────────────────────────┐
-                    │ Corpus (~780 .md files, ~7.3 K chunks)  │
+                    │ Corpus (~2,170 .md files, ~16.9K chunks)│
                     │ memory/ + rules/ + skills/ + dev-docs/  │
                     └────────────────┬────────────────────────┘
                                      │ reindex.py (--delta or full)
@@ -44,8 +44,8 @@ A semantic search index over the whole corpus would mean: query by concept, get 
                                      │   └─ L2-normalize, write to disk
                                      ▼
                     ┌─────────────────────────────────────────┐
-                    │ index.npz (27 MB) + chunks.jsonl (12 MB)│
-                    │ 7,332 vectors × 1,536 dims, float32     │
+                    │ index.npz (59 MB) + chunks.jsonl (26 MB)│
+                    │ 16,865 vectors × 1,536 dims, float32    │
                     └────────────────┬────────────────────────┘
                                      │ recall.py "<query>"
                                      │   ├─ Embed query (single Cohere call)
@@ -71,7 +71,7 @@ All three are zero-setup beyond pointing at the index.
 
 ### 1. Cosine over a vector DB
 
-Brute-force cosine via numpy is ~7,300 vectors × 1,536 dims = ~11M multiply-accumulates per query. On a modern CPU: ~5 ms. Vector DBs are the right answer at 100K+ vectors; below that, a flat numpy array is faster, simpler, and has zero ops cost.
+Brute-force cosine via numpy is ~16,900 vectors × 1,536 dims = ~26M multiply-accumulates per query. On a modern CPU: ~10 ms. Vector DBs are the right answer at 100K+ vectors; below that, a flat numpy array is faster, simpler, and has zero ops cost. The corpus has more than doubled since this system shipped and the design still holds with 6× headroom.
 
 ### 2. Chunk per `##` section, not per file or sliding window
 
@@ -112,12 +112,12 @@ Memory files use `path.stem` as chunk ID (`project_recall::00-architecture`). Sk
 
 | Metric | Value |
 |---|---|
-| Corpus indexed | 7,332 chunks across 781 files (measured June 2026) |
-| Sources | personal memory (~670) · project rules (~145) · local skills (~55) · plugin-marketplace skills (~2,790) · project dev-docs (~3,670) |
-| Index size on disk | 27 MB `index.npz` + 12 MB `chunks.jsonl` |
+| Corpus indexed | 16,865 chunks across 2,169 files (measured July 2026; was 7,332 / 781 in June) |
+| Sources | personal memory + other (~1,140) · project rules (~80) · skills (~2,900) · project dev-docs (~12,750) |
+| Index size on disk | 59 MB `index.npz` + 26 MB `chunks.jsonl` |
 | Cost: single query | ~30 query tokens = $0.000004 |
 | Cost: query with `--rerank` | + one Cohere rerank call ≈ $0.001 |
-| Cost: full reindex | ~1.3 M tokens ≈ $0.16 |
+| Cost: full reindex | ~5.5 M tokens ≈ $0.65 (estimated from corpus size; delta reindex is what actually runs) |
 | Cost: delta reindex (typical session) | ~50 K tokens ≈ $0.006 |
 | Query latency, cosine-only | ~150–300 ms (mostly the Cohere embed RTT) |
 | Query latency, with `--rerank` | ~350–500 ms |
@@ -159,4 +159,4 @@ If the design is interesting and you'd want a similar system for your own corpus
 
 ---
 
-**Built:** 2026-05-24, extended 2026-05-25 (rules+skills indexing, visualization, duplicate-detection, stale-check, reranker), extended 2026-05-27 (project dev-docs).
+**Built:** 2026-05-24, extended 2026-05-25 (rules+skills indexing, visualization, duplicate-detection, stale-check, reranker), extended 2026-05-27 (project dev-docs). Figures refreshed 2026-07-23.
