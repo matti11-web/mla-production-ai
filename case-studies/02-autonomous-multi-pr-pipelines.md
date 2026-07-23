@@ -2,7 +2,7 @@
 
 A local orchestration pattern for turning a roadmap into several independent pull requests, with each PR built, reviewed, and left ready for human merge. Built because one long LLM session is the wrong shape for multi-workstream delivery.
 
-**Status:** In active use across application and infrastructure work. The pattern has been validated across six roadmap runs: a wrapper loop spawns one fresh large-context implementation session per iteration, each iteration works one item on its own branch and opens a PR behind reviewer-agent gates, and state is handed between iterations through a progress artifact. I merge; the loop does not.
+**Status:** In active use across application and infrastructure work through mid-2026. A wrapper loop spawns one fresh large-context implementation session per iteration; each iteration works one item on its own branch and opens a PR behind reviewer-agent gates; state is handed between iterations through a progress artifact. Since first validation the pattern has grown a scheduled front-end (see *The governance layer* below). Throughout, one thing has not moved: I merge; the loop does not.
 
 ---
 
@@ -94,11 +94,23 @@ That sounds slower. In practice it is faster, because it preserves trust. I can 
 
 ---
 
+## The governance layer: scheduling without surrendering the gate
+
+The pattern later grew a scheduled front-end — the ability to set a build in motion for the night rather than kicking each run off by hand. The interesting part is everything I *refused* to automate on the way there.
+
+- **One build per night, not "as many as possible."** The throughput ceiling was never how fast the loop runs — it's how many PRs I can review well the next morning. A launcher that queued five builds a night would just manufacture a review backlog. The metric that matters is merged-and-verified, so the launcher stages at most one.
+- **Silence is a stop, not a go.** The scheduler proposes a candidate and waits for an explicit one-tap approval. No reply means nothing launches. A system that defaulted to running on silence would eventually run something I hadn't actually agreed to — so the default is the safe direction.
+- **Morning verification is part of the loop, not an afterthought.** A run only "counts" once a post-run audit confirms it cleared the gates. A run that fired but produced nothing mergeable is a failure the system has to surface, including the case where no run fired at all.
+- **Full unattended operation is gated on a scoped credential — deliberately.** The blocker to a fully hands-off night isn't a missing feature; it's that an overnight loop running on a broad access token could, in principle, execute a generated-then-run script that touches production data. The unlock is a *read-mostly, scoped* credential (read access to the data and deploy surfaces it needs, and nothing that can delete or mutate production). Until that scoping is in place, unattended nights stay off. That's a governance decision wearing the costume of a to-do item.
+
+The through-line: automation earned more reach over time, but never the merge decision, and never a destructive capability it could reach unsupervised. Every increment in autonomy came with an explicit gate to match it.
+
+---
+
 ## Outcomes
 
 | Metric | Value |
 |---|---:|
-| Validated roadmap runs | 6 |
 | PRs shipped per run | 5-10, sequential iterations |
 | Target PR shape | one work item, one branch, one review surface |
 | Human merge gate | always |
@@ -138,4 +150,4 @@ The reusable pattern is the contract: roadmap decomposition, branch isolation, e
 
 ---
 
-**Codified:** May 2026, as a reusable skill after three validated overnight runs; six runs validated to date (April–May 2026).
+**Codified:** May 2026, as a reusable skill after the first validated overnight runs. Extended mid-2026 with a scheduled, human-gated launcher front-end; the merge decision and destructive-action authority stayed with me throughout.

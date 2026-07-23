@@ -34,7 +34,7 @@ No source code from client work is published here. Each case study describes the
 | Cloudflare Workers + D1 + Hono | Edge-first, EU data-location options (D1 location hints), sub-50ms cold start, zero servers to manage. Tradeoff: 128 MB memory cap forces stream-based file handling for anything >80 MB. |
 | Claude Code skills as plugin marketplaces | Skills compose like Unix tools. Domain knowledge (e.g. construction pricing) lives next to engineering skills (e.g. Hono routing) without conflict. |
 | Multi-agent orchestration via Task tool | Use Opus for architecture + synthesis, Sonnet for parallel execution. Single agent always loses to specialized agents on long-context refactors. |
-| Cold-read discipline | LLM-generated brainstorms contain hallucinations indistinguishable from facts. Adversarial cold-read before action is non-negotiable. |
+| [Cold-read discipline](patterns/cold-read-discipline.md) | LLM output is fluent, not accurate — hallucinations arrive as plausible, specific, confident detail. A separate adversarial verification pass before action is non-negotiable. Full write-up. |
 | [Context-budget engineering](patterns/context-budget-engineering.md) | Always-on context (skill descriptions, rules, memory index) is a measurable tax on every session. Measured ~101K tokens, engineered down to ~71K without losing routing accuracy. Full write-up. |
 
 ---
