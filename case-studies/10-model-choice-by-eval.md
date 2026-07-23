@@ -8,16 +8,16 @@ A production summarization feature ran on the cheapest capable model. A blind ev
 
 ## Why this eval existed at all
 
-The feature: long, messy speech-to-text transcripts summarized into structured output for a business application. The model choice was inherited from an earlier evaluation on a *different* task (tool-augmented Q&A), where the cheap model had been fine.
+The feature condenses long, noisy documents — machine-generated text, tens of thousands of characters, full of the artefacts that automated extraction leaves behind — into structured output. The model choice was inherited from an earlier evaluation on a *different* task (tool-augmented Q&A), where the cheap model had been fine.
 
-That inheritance is the actual failure mode, and it's everywhere: **an eval result is bound to its task.** Summarizing a noisy 40,000-character transcript is not answering a question with tools. The quality dimension is different (faithfulness and coverage, not citation accuracy), the input length is different by an order of magnitude, and the failure modes are different. Carrying the old verdict over was a guess wearing an eval's clothes.
+That inheritance is the actual failure mode, and it's everywhere: **an eval result is bound to its task.** Condensing a noisy 40,000-character document is not answering a question with tools. The quality dimension is different (faithfulness and coverage, not citation accuracy), the input length is different by an order of magnitude, and the failure modes are different. Carrying the old verdict over was a guess wearing an eval's clothes.
 
 ## The harness
 
 | Step | What |
 |---|---|
-| Inputs | 4 real recordings, 24,000–56,000 characters per transcript. Not synthetic. |
-| Transcription | Same speech-to-text provider, language and speaker-labelling as the production pipeline (EU-hosted) |
+| Inputs | 4 real production documents, 24,000–56,000 characters each. Not synthetic. |
+| Preparation | Generated through the same upstream pipeline as production, so the input noise profile matches reality |
 | Candidates | 4 model configurations, including the incumbent and two reasoning-effort variants of the newest model |
 | Prompt | The **verbatim production prompt and schema**, copied from the live service — not a prompt written for the eval |
 | Scoring | A blind jury: a separate model, not among the candidates, scoring anonymized outputs on faithfulness, coverage, structure and language |
@@ -26,16 +26,16 @@ That inheritance is the actual failure mode, and it's everywhere: **an eval resu
 
 Four design choices did the heavy lifting:
 
-1. **Real inputs, not synthetic ones.** A synthetic transcript is clean. Clean input is precisely where the cheap model looked fine. The whole finding lives in the mess: garbled words, half sentences, speaker overlap.
+1. **Real inputs, not synthetic ones.** A synthetic sample is clean. Clean input is precisely where the cheap model looked fine. The whole finding lives in the mess: garbled words, half sentences, overlapping fragments.
 2. **The production prompt, copied verbatim.** If you evaluate with a nicer prompt than production runs, you've measured a system that doesn't exist.
 3. **A blind judge that isn't a candidate.** A model grading its own output is not evidence. Anonymize the outputs, and use a model with no entry in the race.
 4. **Cost and latency measured, not estimated.** Both come out of real token counts from the runs.
 
 ## What it found
 
-The incumbent cheap model produced a usable summary for **one of four** real recordings. On two it refused outright, asking for "a correct transcript to be resubmitted." On a third it declared the text unreadable and returned loose numbers with no structure or action items. On the single clean recording where it did produce a summary, that summary contained an invented measurement and an invented role.
+The incumbent cheap model produced usable output for **one of four** real documents. On two it refused outright, asking for a corrected input to be resubmitted. On a third it declared the text unreadable and returned loose figures with no structure or action items. On the single cleanest document where it did produce a summary, that summary contained two fabricated details.
 
-From the *same* transcripts, the mid-tier model produced four usable summaries out of four, with the highest coverage score in the field, and correctly extracted prices, timing, objections and next steps from the very text the cheap model had called unreadable.
+From the *same* inputs, the mid-tier model produced four usable outputs out of four, with the highest coverage score in the field, and correctly extracted the key figures, timing and follow-up items from the very text the cheap model had called unreadable.
 
 The price of the fix: roughly **five cents more per summary**.
 
@@ -60,6 +60,6 @@ And the meta-point for anyone deploying AI in a business: the cheapest model tha
 
 ## What's NOT in this case study
 
-- Recording contents, participants, or any customer-identifying material (transcripts and model outputs stay local and out of version control by design)
+- The evaluation inputs, their contents, or anything identifying the people or business they concern (inputs and model outputs stay local and out of version control by design)
 - The production prompt and schema
-- Company-identifying detail about the pipeline this feeds
+- The application domain and any company-identifying detail about the pipeline this feeds
