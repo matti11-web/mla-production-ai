@@ -22,6 +22,8 @@ No source code from client work is published here. Each case study describes the
 | [06](case-studies/06-hash-chain-document-signing.md) | **Hash-Chain Document Signing** | E-signing flow with signed-PDF generation, completion certificates, hash-chain audit events, and signed-artifact preference. | Workers · D1 · R2 · Web Crypto · Resend |
 | [07](case-studies/07-english-media-brand-solo.md) | **English-Language Media Brand, Solo** | Full media-brand build for a sim-racing team: identity system, Astro website, shorts-first content pipeline, YouTube-API analytics loop. Capability case, not a growth story. | Astro · Cloudflare · Python · YouTube APIs |
 | [08](case-studies/08-compound-systems.md) | **Compound Systems** | What happens after ~5 months of building on shared data layers: one email triggers coordinated updates across document management, knowledge vault, public website, and document generation. | Workers · D1 · Vectorize · MCP · Claude Code |
+| [09](case-studies/09-legacy-erp-unlock.md) | **Unlocking a 15-Year-Old ERP** | Read-only gateway + nightly mirror over a vendor ERP (213 tables, ~4.3M rows) — no writes, no migration project. Plus two bugs that produced confident wrong answers. | FastAPI gateway · Workers cron · D1 · Vectorize |
+| [10](case-studies/10-model-choice-by-eval.md) | **Choosing a Model With an Eval** | Blind-jury evaluation on real, messy inputs: the incumbent cheap model was silently failing 3 of 4 production cases. Cost of the fix: ~5 cents per run. | Node · Anthropic API · blind LLM jury · AssemblyAI |
 
 ---
 
