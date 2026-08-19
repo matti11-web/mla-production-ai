@@ -14,7 +14,7 @@ No source code from client work is published here. Each case study describes the
 
 | # | Project | What it does | Stack |
 |---|---|---|---|
-| [01](case-studies/01-semantic-memory-recall.md) | **Semantic Memory (`/recall`)** | Cohere-embedded, RAG-style search over 16K+ personal-knowledge chunks. Replaces grep for fuzzy concept lookup across rules, skills, and project notes. Auto-reindexes on session close. | Python · Cohere `embed-v4.0` + `rerank-v3.5` · numpy |
+| [01](case-studies/01-semantic-memory-recall.md) | **Semantic Memory (`/recall`)** | Cohere-embedded, RAG-style search over 19K+ personal-knowledge chunks. Replaces grep for fuzzy concept lookup across rules, skills, and project notes. Auto-reindexes on session close. | Python · Cohere `embed-v4.0` + `rerank-v3.5` · numpy |
 | [02](case-studies/02-autonomous-multi-pr-pipelines.md) | **Autonomous Multi-PR Pipelines** | Roadmap-to-PR orchestration pattern: isolated feature branches, local checks, reviewer-agent gates, and human-owned merge decisions. | PowerShell · Claude Code · gh CLI · reviewer agents |
 | [03](case-studies/03-customer-intelligence-layer.md) | **Customer Intelligence Layer** | PDF extraction pipeline that turns operational documents into comparable, queryable workflow data. Content-stream parser, no OCR. | Cloudflare Workers · D1 · TypeScript · custom PDF parser |
 | [04](case-studies/04-construction-erp-platform.md) | **Construction-Industry ERP Platform** | 14-module internal platform (core wave built in ~3 months): CRM, document signing, knowledge vault, customer intelligence, calculators. | Cloudflare Workers · D1 · Hono · React · Claude |
@@ -24,6 +24,8 @@ No source code from client work is published here. Each case study describes the
 | [08](case-studies/08-compound-systems.md) | **Compound Systems** | What happens after ~5 months of building on shared data layers: one email triggers coordinated updates across document management, knowledge vault, public website, and document generation. | Workers · D1 · Vectorize · MCP · Claude Code |
 | [09](case-studies/09-legacy-erp-unlock.md) | **Unlocking a 15-Year-Old ERP** | Read-only gateway + nightly mirror over a vendor ERP (213 tables, ~4.3M rows) — no writes, no migration project. Plus two bugs that produced confident wrong answers. | FastAPI gateway · Workers cron · D1 · Vectorize |
 | [10](case-studies/10-model-choice-by-eval.md) | **Choosing a Model With an Eval** | Blind-jury evaluation on real, messy inputs: the incumbent cheap model was silently failing 3 of 4 production cases. Cost of the fix: ~5 cents per run. | Node · Anthropic API · blind LLM jury |
+| [11](case-studies/11-intake-first-document-architecture.md) | **Killing the Folder Tree** | Intake-first architecture for two document stores that were drifting apart: one controlled door, two stores, one shared topic code, everything lands as a draft. Includes the silent truncation bug the design review surfaced. | Workers · D1 · R2 · Vectorize · Claude |
+| [12](case-studies/12-verifying-an-irreversible-cutover.md) | **Verifying an Irreversible Cutover** | Proving a ~1,000-page site migration *before* the DNS switch, because there is no diff afterwards. Path, content and pixel parity gates — and the gate that ran green against the wrong artifact. | Astro · headless CMS · Cloudflare · Python · Playwright |
 
 ---
 
@@ -35,24 +37,26 @@ No source code from client work is published here. Each case study describes the
 | Claude Code skills as plugin marketplaces | Skills compose like Unix tools. Domain knowledge (e.g. construction pricing) lives next to engineering skills (e.g. Hono routing) without conflict. |
 | Multi-agent orchestration via Task tool | Use Opus for architecture + synthesis, Sonnet for parallel execution. Single agent always loses to specialized agents on long-context refactors. |
 | [Cold-read discipline](patterns/cold-read-discipline.md) | LLM output is fluent, not accurate — hallucinations arrive as plausible, specific, confident detail. A separate adversarial verification pass before action is non-negotiable. Full write-up. |
-| [Context-budget engineering](patterns/context-budget-engineering.md) | Always-on context (skill descriptions, rules, memory index) is a measurable tax on every session. Measured ~101K tokens, engineered down to ~71K without losing routing accuracy. Full write-up. |
+| [Context-budget engineering](patterns/context-budget-engineering.md) | Always-on context (skill descriptions, rules, memory index) is a measurable tax on every session. Measured ~101K tokens, engineered down to ~71K, then to ~51K — without losing routing accuracy. Full write-up. |
 
 ---
 
 ## By the numbers
 
-All figures measured 23 July 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 144 days).
+All figures measured 19 August 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 171 days).
 
-| Metric | Value |
-|---|---|
-| Merged pull requests | 1,325 (of 1,350 opened — 98%) |
-| Commits | 4,400+ across 26 repositories |
-| Production D1 database migrations (forward-only) | 240+ |
-| Reusable AI skills authored/curated (deduplicated) | 275 |
-| Production services under 24/7 synthetic monitoring | 8 |
-| Semantic memory corpus | 16,865 chunks across 2,169 files |
+| Metric | Value | Change since 23 July |
+|---|---|---|
+| Merged pull requests | 1,724 (of 1,756 opened — 98%) | +399 |
+| Commits | 5,662 across 29 repositories | +1,262 |
+| Production D1 database migrations (forward-only) | 291 | +51 |
+| Reusable AI skills authored/curated (deduplicated) | 275 | unchanged |
+| Production services under 24/7 synthetic monitoring | 8 | unchanged |
+| Semantic memory corpus | 19,285 chunks across 2,420 files | +2,420 chunks |
 
-Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 1,325 PRs ≠ 1,325 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
+How each is counted: merged PRs from the GitHub Search API across my account; commits via `git rev-list --count` per repository, own repos only, excluding vendored and reference checkouts; migrations by counting forward-only migration files in production services, excluding `.down.sql` rollbacks and worktree copies; skills as the deduplicated union of my two private skill marketplaces; the memory corpus as lines in the live embedding index.
+
+Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 1,724 PRs ≠ 1,724 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
 
 ---
 
@@ -68,7 +72,7 @@ Some detail stays private by design.
 
 ## About me
 
-- 35, Belgian. Native Dutch, professional French and English.
+- 36, Belgian. Native Dutch, professional French and English.
 - 15 years across entrepreneurship (founded multiple SMEs), business-strategy consulting, sales leadership, and coaching (sales teams, real-estate agents, founders).
 - Today: Commercial Director at a European construction SME — and turning business strategy into working software with AI.
 - The fusion: deep commercial judgment × coaching/requirement-extraction × AI-and-software fluency. See [How I work](how-i-work.md).

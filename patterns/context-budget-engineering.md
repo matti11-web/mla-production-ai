@@ -1,8 +1,8 @@
 # Context-Budget Engineering
 
-How I got the always-on context load of my AI working environment from ~101K tokens down to ~71K — measured, not estimated — without losing skill-routing accuracy. This is the pattern write-up promised in the README.
+How I got the always-on context load of my AI working environment from ~101K tokens down to 50,942 — measured, not estimated — without losing skill-routing accuracy. This is the pattern write-up promised in the README.
 
-**Status:** Applied to my own Claude Code workspace, May–July 2026. Numbers below are from the measurement script, not vibes.
+**Status:** Applied to my own Claude Code workspace, May–August 2026. Numbers below are from a measurement probe against real sessions, not vibes. Current baseline: **50,942 startup tokens**, measured 9 August 2026.
 
 ---
 
@@ -53,22 +53,48 @@ One non-obvious accounting note: graduating a memory item into an always-on rule
 
 The strongest form of the pattern: knowledge that lives in a semantic index costs **zero** always-on tokens. My `/recall` system (case study 01) searches ~17K chunks of memory, rules, skills, and project docs by concept. Anything searchable-on-demand doesn't need to be resident. The always-on budget should hold only what must *never* be missed — everything else is a retrieval problem.
 
-### 5. A discoverability catalog for what you disabled
+### 5. Move domain rules into the skills that own them
+
+The rule-loader split above (lever 2) still leaves every loader resident. The next cut asked a harder question: does this domain rule need to be always-on *at all*?
+
+Twenty-seven standing rules became seven. The seven that stayed are the ones that apply regardless of task — output conventions, verification discipline, environment facts, file routing, memory-write boundaries, model selection, context budget itself. The other twenty were domain rules (API patterns, design system, testing conventions, commercial pricing doctrine). Each was folded into the skill that owns that domain, so the rule now arrives with the skill instead of before it. The full reference text was not touched — nothing was lost, only relocated off the always-on path.
+
+Measured effect: **59,964 → 50,942 startup tokens (−9,022, −15.0%)**.
+
+### 6. Deleting in git is not deleting
+
+The twenty domain loaders were removed from version control on 5 August. They kept loading until 9 August.
+
+The commit deleted them from the index; it left them in the working tree as untracked files. The harness reads the filesystem, not git. So for four days the measurement said the cut had shipped and the runtime disagreed — a −15% saving that existed entirely on paper.
+
+The fix is a one-line regression check that treats any untracked file in the rules directory as a defect:
+
+```
+git status --porcelain <rules-dir>    # any "??" line is a loader that is loading but should not be
+```
+
+Generalised: **verify the saving in the channel that actually consumes the file.** A tool that reasons about your intent is blind to a defect in the artifact.
+
+### 7. A discoverability catalog for what you disabled
 
 The objection to disabling skill packs: "if the description isn't in context, the model won't know the skill exists." Valid — and solvable. A generated catalog (indexes per pack and per skill, plus a local search script) keeps disabled long-tail skills *findable* without keeping them *resident*. Disabling ≠ losing; it means moving from push (always injected) to pull (looked up when relevant).
 
 ## Results
 
-| Measure | Before | After |
-|---|---:|---:|
-| Always-on context | ~101K tokens | ~71K tokens |
-| Skill descriptions | ~72K | ~41K |
-| Skill-routing accuracy | — | No observed regressions in daily use; frequently-used packs stay enabled |
+| Measure | May 2026 | July 2026 | 9 August 2026 |
+|---|---:|---:|---:|
+| Always-on context | ~101K tokens | ~71K tokens | **50,942 tokens** |
+| Skill descriptions | ~72K | ~41K | ~41K |
+| Always-on standing rules | 27 files | 27 files | 7 files |
+| Skill-routing accuracy | — | No observed regressions | No observed regressions; domain rules now arrive with their skill |
+
+Total reduction from the May baseline: **~50%**. The July → August half came almost entirely from levers 5 and 6 — and lever 6 is the reason the July → August half took four extra days to actually happen.
 
 ## Lessons
 
 - **Descriptions cost even when unused.** The price of an installed skill is paid every session, invoked or not. Install-time is the moment to ask "does this earn always-on placement, or catalog placement?"
 - **The budget decays.** Every new skill, rule, and memory line erodes it. Re-measure on a schedule; the script makes that a 30-second check instead of an audit.
+- **Startup cost is re-paid every turn.** It is not a one-time load — it is re-read on each turn of the session as cached context. A kilotoken saved is a kilotoken saved per turn, which is why a 15% cut is worth four days of chasing.
 - **Verify the injection path empirically.** Marker-file spikes (plant a sentinel, check whether it surfaces in a fresh session's context) settle in minutes what documentation debates can't.
 - **This is an ops discipline, not a one-off cleanup.** The interesting version of "prompt engineering" at system scale is deciding what *not* to load.
 
