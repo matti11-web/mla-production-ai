@@ -45,7 +45,7 @@ A semantic search index over the whole corpus would mean: query by concept, get 
                                      ▼
                     ┌─────────────────────────────────────────┐
                     │ index.npz (59 MB) + chunks.jsonl (26 MB)│
-                    │ 16,865 vectors × 1,536 dims, float32    │
+                    │ 19,285 vectors × 1,536 dims, float32    │
                     └────────────────┬────────────────────────┘
                                      │ recall.py "<query>"
                                      │   ├─ Embed query (single Cohere call)
@@ -112,7 +112,7 @@ Memory files use `path.stem` as chunk ID (`project_recall::00-architecture`). Sk
 
 | Metric | Value |
 |---|---|
-| Corpus indexed | 16,865 chunks across 2,169 files (measured July 2026; was 7,332 / 781 in June) |
+| Corpus indexed | 19,285 chunks across 2,420 files (measured 19 August 2026; was 16,865 / 2,169 in July and 7,332 / 781 in June) |
 | Sources | personal memory + other (~1,140) · project rules (~80) · skills (~2,900) · project dev-docs (~12,750) |
 | Index size on disk | 59 MB `index.npz` + 26 MB `chunks.jsonl` |
 | Cost: single query | ~30 query tokens = $0.000004 |

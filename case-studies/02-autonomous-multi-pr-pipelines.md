@@ -98,12 +98,21 @@ That sounds slower. In practice it is faster, because it preserves trust. I can 
 
 The pattern later grew a scheduled front-end — the ability to set a build in motion for the night rather than kicking each run off by hand. The interesting part is everything I *refused* to automate on the way there.
 
-- **One build per night, not "as many as possible."** The throughput ceiling was never how fast the loop runs — it's how many PRs I can review well the next morning. A launcher that queued five builds a night would just manufacture a review backlog. The metric that matters is merged-and-verified, so the launcher stages at most one.
-- **Silence is a stop, not a go.** The scheduler proposes a candidate and waits for an explicit one-tap approval. No reply means nothing launches. A system that defaulted to running on silence would eventually run something I hadn't actually agreed to — so the default is the safe direction.
+- **Machine-checkable preconditions, not a mood.** A run only starts if four conditions hold: the work item is not blocked by an open human decision, the target repository has CI configured, the work list is non-empty, and the repository path resolves. All four are checked in code before anything spawns. None of them requires me to be awake.
 - **Morning verification is part of the loop, not an afterthought.** A run only "counts" once a post-run audit confirms it cleared the gates. A run that fired but produced nothing mergeable is a failure the system has to surface, including the case where no run fired at all.
-- **Full unattended operation is gated on a scoped credential — deliberately.** The blocker to a fully hands-off night isn't a missing feature; it's that an overnight loop running on a broad access token could, in principle, execute a generated-then-run script that touches production data. The unlock is a *read-mostly, scoped* credential (read access to the data and deploy surfaces it needs, and nothing that can delete or mutate production). Until that scoping is in place, unattended nights stay off. That's a governance decision wearing the costume of a to-do item.
+- **Unattended operation is gated on a scoped credential — deliberately.** An overnight loop running on a broad personal access token could, in principle, execute a generated-then-run script that touches production data. The unlock was a *read-mostly, scoped* credential: read access to the data and deploy surfaces the loop needs, and nothing that can delete or mutate production. That scoping is now in place, and it was the actual precondition for unattended nights — not a missing feature. A governance decision wearing the costume of a to-do item.
 
 The through-line: automation earned more reach over time, but never the merge decision, and never a destructive capability it could reach unsupervised. Every increment in autonomy came with an explicit gate to match it.
+
+### Errata — 19 August 2026: I removed a gate I had publicly defended
+
+An earlier version of this section argued for two launch-time rules: **one build per night**, and **silence is a stop** (a scheduled proposal that waited for an explicit one-tap approval, so no reply meant no run). Both were real, both ran for roughly three months, and I have now removed both.
+
+They were gating the wrong moment. The scarce resource is my attention at *merge* time, not at *launch* time — and a launch-time approval tap does not reduce merge-time load, it just adds a step that fails closed on a night I happen to be busy. In practice the rule mostly produced skipped nights, not safer ones. The one-build cap had a second problem: it capped the wrong unit. Iteration budget now scales with the size of the work list rather than being fixed at one build, so a five-item list gets a proportionally longer run instead of being truncated.
+
+What did *not* change: the merge decision is still mine, destructive actions are still human-owned, and the credential the loop runs on is still scoped read-mostly. The gate moved nowhere. The ceremony in front of it went away.
+
+I am leaving the original claim visible rather than editing it out. A pattern write-up that only ever shows the rules that survived is a worse artifact than one that shows which rule the author was wrong about.
 
 ---
 
@@ -114,6 +123,7 @@ The through-line: automation earned more reach over time, but never the merge de
 | PRs shipped per run | 5-10, sequential iterations |
 | Target PR shape | one work item, one branch, one review surface |
 | Human merge gate | always |
+| Launch-time human approval | removed August 2026 — see errata |
 | Best-fit work | scoped feature work with per-WI acceptance criteria, refactors, testable infrastructure fixes |
 | Poor-fit work | ambiguous product strategy, live service migration, destructive cleanup, legal/commercial decisions |
 
@@ -150,4 +160,4 @@ The reusable pattern is the contract: roadmap decomposition, branch isolation, e
 
 ---
 
-**Codified:** May 2026, as a reusable skill after the first validated overnight runs. Extended mid-2026 with a scheduled, human-gated launcher front-end; the merge decision and destructive-action authority stayed with me throughout.
+**Codified:** May 2026, as a reusable skill after the first validated overnight runs. Extended mid-2026 with a scheduled launcher front-end, whose launch-time approval tap was then removed in August 2026 (see errata). The merge decision and destructive-action authority stayed with me throughout.
