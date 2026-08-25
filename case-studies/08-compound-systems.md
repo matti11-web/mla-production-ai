@@ -20,7 +20,7 @@ One email, one instruction — five systems affected.
 |---|---|---|
 | 1 | Mail (MCP) | The session reads the email thread and pulls the linked documents directly — no manual download/upload step. |
 | 2 | Document management ([case 06](06-hash-chain-document-signing.md) infrastructure) | Documents are filed into the DMS with metadata and an auditable event trail. |
-| 3 | Knowledge vault | Document content is chunked and embedded into a vector index — the same index that serves semantic search in two different internal frontends. Sales staff asking "what does the warranty cover for X?" now hit the current documents. |
+| 3 | Knowledge vault | Document content is chunked and embedded into a vector index — the same index that serves semantic search in two different internal frontends. A query like "what does the warranty cover for X?" then resolves against the current documents rather than a stale copy. That is a capability claim, not a usage claim — how heavily the search is actually used is a separate question this case study does not answer. |
 | 4 | Public website | The site's warranty/maintenance content is diffed against the new documents and updated where it disagrees — the website is treated as a downstream artifact of the source documents, not a separately-maintained copy. |
 | 5 | Order-form generation | The warranty terms flow into the document-generation rebuild in progress, so the next version of the customer-facing order form references the current terms. |
 | — | Persistent memory ([case 01](01-semantic-memory-recall.md)) | The decision and its context are indexed, so a session three weeks later that touches warranty text finds this change instead of resurrecting the old wording. |
