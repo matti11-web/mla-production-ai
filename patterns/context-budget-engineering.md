@@ -101,3 +101,29 @@ Total reduction from the May baseline: **~50%**. The July → August half came a
 ---
 
 *Specific token counts are from my own workspace and will differ per setup; the levers transfer directly to any Claude Code (or comparable agent-harness) environment.*
+
+---
+
+## Errata — 25 August 2026: the deleted files came back
+
+The four-day gap described above was not the end of it. The same twenty rule files returned on
+**16 August 2026** and loaded for five more days before I noticed.
+
+The cause was a different channel entirely. A weekly maintenance job syncs this workspace against
+a backup repository, and one of its steps restores any rule file that exists in the backup but is
+missing locally. It has no way to distinguish "missing because it was never synced" from "missing
+because I deliberately deleted it". Its run at 05:00:01 on 16 August restored all twenty, with
+original modification times preserved, so nothing in the file listing looked new. That is
+**24,294 bytes, roughly 6,073 tokens**, back in every session for five days.
+
+The fix is a two-sided delete: remove the files locally *and* in the backup repository, then commit
+there. A deletion can never propagate through a one-way restore.
+
+What this changes about the lesson above: verifying a saving in the channel that consumes the file
+catches the first failure, not the second. The regression check has to run repeatedly, because the
+question is not only "did my change land?" but "what else writes to this directory?" The untracked-file
+check described above now runs as a standing regression check, not a one-time verification.
+
+The headline number is unaffected: the current baseline remains **50,942 startup tokens**. What was
+wrong was the implied finality of the fix, and that is worth recording rather than quietly repairing.
+
