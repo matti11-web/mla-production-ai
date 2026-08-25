@@ -43,20 +43,20 @@ No source code from client work is published here. Each case study describes the
 
 ## By the numbers
 
-All figures measured 19 August 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 171 days).
+All figures measured 25 August 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 177 days).
 
-| Metric | Value | Change since 23 July |
+| Metric | Value | Change since 19 August |
 |---|---|---|
-| Merged pull requests | 1,724 (of 1,756 opened — 98%) | +399 |
-| Commits | 5,662 across 29 repositories | +1,262 |
-| Production D1 database migrations (forward-only) | 291 | +51 |
+| Merged pull requests | 1,814 (of 1,847 opened — 98%) | +90 |
+| Commits | 5,965 across 30 repositories | +303 |
+| Production D1 database migrations (forward-only) | 305 | +14 |
 | Reusable AI skills authored/curated (deduplicated) | 275 | unchanged |
-| Production services under 24/7 synthetic monitoring | 8 | unchanged |
-| Semantic memory corpus | 19,285 chunks across 2,420 files | +2,420 chunks |
+| Production services under 24/7 synthetic monitoring | 8 | unchanged — re-counted this time, previously carried forward |
+| Semantic memory corpus | 19,991 chunks across 2,489 files | +706 chunks |
 
 How each is counted: merged PRs from the GitHub Search API across my account; commits via `git rev-list --count` per repository, own repos only, excluding vendored and reference checkouts; migrations by counting forward-only migration files in production services, excluding `.down.sql` rollbacks and worktree copies; skills as the deduplicated union of my two private skill marketplaces; the memory corpus as lines in the live embedding index.
 
-Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 1,724 PRs ≠ 1,724 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
+Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 1,814 PRs ≠ 1,814 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
 
 ---
 
