@@ -43,20 +43,22 @@ No source code from client work is published here. Each case study describes the
 
 ## By the numbers
 
-All figures measured 25 August 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 177 days).
+All figures measured 29 August 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 181 days).
 
-| Metric | Value | Change since 19 August |
+| Metric | Value | Change since 25 August |
 |---|---|---|
-| Merged pull requests | 1,814 (of 1,847 opened — 98%) | +90 |
-| Commits | 5,965 across 30 repositories | +303 |
-| Production D1 database migrations (forward-only) | 305 | +14 |
+| Merged pull requests | 1,848 (of 1,884 opened — 98%) | +34 |
+| Commits | 6,037 across 30 repositories | +72 |
+| Production D1 database migrations (forward-only) | 314 | +9 |
 | Reusable AI skills authored/curated (deduplicated) | 275 | unchanged |
-| Production services under 24/7 synthetic monitoring | 8 | unchanged — re-counted this time, previously carried forward |
-| Semantic memory corpus | 19,991 chunks across 2,489 files | +706 chunks |
+| Production services under 24/7 synthetic monitoring | 8 | unchanged — carried forward from 25 August, not re-counted this time |
+| Semantic memory corpus | 20,598 chunks across 2,564 files | +607 chunks |
 
-How each is counted: merged PRs from the GitHub Search API across my account; commits via `git rev-list --count` per repository, own repos only, excluding vendored and reference checkouts; migrations by counting forward-only migration files in production services, excluding `.down.sql` rollbacks and worktree copies; skills as the deduplicated union of my two private skill marketplaces; the memory corpus as lines in the live embedding index.
+How each is counted: merged PRs from the GitHub Search API across my account; commits via `git rev-list --count HEAD` per repository, own repos only, excluding vendored and reference checkouts; migrations as the 25 August total plus the forward-only migration files added since, counted with `git log --diff-filter=A`, excluding `.down.sql` rollbacks and worktree copies; skills as the deduplicated union of my two private skill marketplaces; the memory corpus counted directly in the live embedding index after a delta reindex on 29 August.
 
-Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 1,814 PRs ≠ 1,814 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
+One row is not re-measured this time: the count of services under synthetic monitoring is carried forward from 25 August. Counting it needs a look at the live monitor rather than a command, so it is marked as carried forward rather than silently repeated as if it were fresh.
+
+Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 1,848 PRs ≠ 1,848 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
 
 ---
 

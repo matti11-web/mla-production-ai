@@ -44,8 +44,8 @@ A semantic search index over the whole corpus would mean: query by concept, get 
                                      │   └─ L2-normalize, write to disk
                                      ▼
                     ┌─────────────────────────────────────────┐
-                    │ index.npz (59 MB) + chunks.jsonl (26 MB)│
-                    │ 19,991 vectors × 1,536 dims, float32    │
+                    │ index.npz (72 MB) + chunks.jsonl (34 MB)│
+                    │ 20,598 vectors × 1,536 dims, float32    │
                     └────────────────┬────────────────────────┘
                                      │ recall.py "<query>"
                                      │   ├─ Embed query (single Cohere call)
@@ -112,9 +112,9 @@ Memory files use `path.stem` as chunk ID (`project_recall::00-architecture`). Sk
 
 | Metric | Value |
 |---|---|
-| Corpus indexed | 19,991 chunks across 2,489 files (measured 25 August 2026; was 19,285 / 2,420 on 19 August, 16,865 / 2,169 in July and 7,332 / 781 in June) |
-| Sources | personal memory + other (~1,140) · project rules (~80) · skills (~2,900) · project dev-docs (~12,750) |
-| Index size on disk | 59 MB `index.npz` + 26 MB `chunks.jsonl` |
+| Corpus indexed | 20,598 chunks across 2,564 files (measured 29 August 2026; was 19,991 / 2,489 on 25 August, 19,285 / 2,420 on 19 August, 16,865 / 2,169 in July and 7,332 / 781 in June) |
+| Sources | personal memory (1,526) · project rules (21) · skills (2,986) · project dev-docs (16,065) |
+| Index size on disk | 72 MB `index.npz` + 34 MB `chunks.jsonl` |
 | Cost: single query | ~30 query tokens = $0.000004 |
 | Cost: query with `--rerank` | + one Cohere rerank call ≈ $0.001 |
 | Cost: full reindex | ~5.5 M tokens ≈ $0.65 (estimated from corpus size; delta reindex is what actually runs) |
