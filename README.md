@@ -52,9 +52,9 @@ All figures measured 29 August 2026 against my own repos and GitHub account (fir
 | Production D1 database migrations (forward-only) | 314 | +9 |
 | Reusable AI skills authored/curated (deduplicated) | 275 | unchanged |
 | Production services under 24/7 synthetic monitoring | 8 | unchanged — carried forward from 25 August, not re-counted this time |
-| Semantic memory corpus | 20,598 chunks across 2,564 files | +607 chunks |
+| Semantic memory corpus | 20,927 chunks across 2,600 files (re-counted 1 September 2026) | +936 chunks |
 
-How each is counted: merged PRs from the GitHub Search API across my account; commits via `git rev-list --count HEAD` per repository, own repos only, excluding vendored and reference checkouts; migrations as the 25 August total plus the forward-only migration files added since, counted with `git log --diff-filter=A`, excluding `.down.sql` rollbacks and worktree copies; skills as the deduplicated union of my two private skill marketplaces; the memory corpus counted directly in the live embedding index after a delta reindex on 29 August.
+How each is counted: merged PRs from the GitHub Search API across my account; commits via `git rev-list --count HEAD` per repository, own repos only, excluding vendored and reference checkouts; migrations as the 25 August total plus the forward-only migration files added since, counted with `git log --diff-filter=A`, excluding `.down.sql` rollbacks and worktree copies; skills as the deduplicated union of my two private skill marketplaces; the memory corpus counted directly in the live embedding index after a delta reindex, re-run on 1 September 2026 (the only row refreshed after 29 August).
 
 One row is not re-measured this time: the count of services under synthetic monitoring is carried forward from 25 August. Counting it needs a look at the live monitor rather than a command, so it is marked as carried forward rather than silently repeated as if it were fresh.
 
