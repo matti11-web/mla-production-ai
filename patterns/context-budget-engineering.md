@@ -2,7 +2,7 @@
 
 How I got the always-on context load of my AI working environment from ~101K tokens down to 50,942 — measured, not estimated — without losing skill-routing accuracy. This is the pattern write-up promised in the README.
 
-**Status:** Applied to my own Claude Code workspace, May–August 2026. Numbers below are from a measurement probe against real sessions, not vibes. Current baseline: **50,942 startup tokens**, measured 9 August 2026.
+**Status:** Applied to my own Claude Code workspace, May–August 2026. Numbers below are from a measurement probe against real sessions, not vibes. Baseline after the work: **50,942 startup tokens**, measured 9 August 2026. Re-measured 23 September 2026 with the same one-turn probe: **57,225** — see "It crept back" at the end.
 
 ---
 
@@ -127,3 +127,10 @@ check described above now runs as a standing regression check, not a one-time ve
 The headline number is unaffected: the current baseline remains **50,942 startup tokens**. What was
 wrong was the implied finality of the fix, and that is worth recording rather than quietly repairing.
 
+## It crept back (23 September 2026)
+
+The same one-turn startup probe that gave 50,942 on 9 August reads **57,225** on 23 September: +6,283 tokens (+12.3%) in six weeks.
+
+The rules did not cause it. The always-on rules directory still holds exactly seven files, so the pull-back described above has not fired again. The growth is in the layers that get added to one at a time and rarely pruned: tool definitions, skill descriptions, and the memory index, which is now over its own size limit. I have not yet split the +6,283 across those layers.
+
+That is the same failure as the original 101K. Nobody decided to spend the extra 6K; it accreted. A budget that is measured once is a snapshot, not a budget. The probe has to run on a schedule, with a threshold that triggers a cleanup.
