@@ -43,22 +43,24 @@ No source code from client work is published here. Each case study describes the
 
 ## By the numbers
 
-All figures measured 29 August 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 181 days).
+All figures measured 23 September 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 206 days).
 
-| Metric | Value | Change since 25 August |
+| Metric | Value | Change since 29 August |
 |---|---|---|
-| Merged pull requests | 1,848 (of 1,884 opened — 98%) | +34 |
-| Commits | 6,037 across 30 repositories | +72 |
-| Production D1 database migrations (forward-only) | 314 | +9 |
-| Reusable AI skills authored/curated (deduplicated) | 275 | unchanged |
-| Production services under 24/7 synthetic monitoring | 8 | unchanged — carried forward from 25 August, not re-counted this time |
-| Semantic memory corpus | 20,927 chunks across 2,600 files (re-counted 1 September 2026) | +936 chunks |
+| Merged pull requests | 2,451 (of 2,515 opened — 97%) | +603 |
+| Commits | 6,037 across 30 repositories | not re-counted — carried forward from 29 August |
+| Production D1 database migrations (forward-only) | 384 | +70 |
+| Reusable AI skills authored/curated (deduplicated) | 275 | not re-counted — carried forward from 29 August |
+| Production services under 24/7 synthetic monitoring | 8 | not re-counted — carried forward from 25 August |
+| Semantic memory corpus | 86,798 chunks across 8,422 files | not comparable — the index scope widened on 20 September |
 
-How each is counted: merged PRs from the GitHub Search API across my account; commits via `git rev-list --count HEAD` per repository, own repos only, excluding vendored and reference checkouts; migrations as the 25 August total plus the forward-only migration files added since, counted with `git log --diff-filter=A`, excluding `.down.sql` rollbacks and worktree copies; skills as the deduplicated union of my two private skill marketplaces; the memory corpus counted directly in the live embedding index after a delta reindex, re-run on 1 September 2026 (the only row refreshed after 29 August).
+How each is counted: merged PRs from the GitHub Search API across my account; commits via `git rev-list --count HEAD` per repository, own repos only, excluding vendored and reference checkouts; migrations as the 29 August total plus the forward-only migration files added since on each production service's default branch, counted with `git log --diff-filter=A`, excluding `.down.sql` rollbacks and worktree copies; skills as the deduplicated union of my two private skill marketplaces; the memory corpus counted directly in the live embedding index.
 
-One row is not re-measured this time: the count of services under synthetic monitoring is carried forward from 25 August. Counting it needs a look at the live monitor rather than a command, so it is marked as carried forward rather than silently repeated as if it were fresh.
+Three rows are carried forward, and marked so rather than silently repeated as if fresh. Commits: most of the repositories moved to a GitHub organisation on 16 September, and the per-repository count has not been re-run against the new locations. Skills and monitoring: counting them needs a manual look, not a command.
 
-Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 1,848 PRs ≠ 1,848 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
+The memory corpus jumped from 20,927 to 86,798 chunks because the index now covers the project documentation of every track, not only memory, rules and skills. That is a scope change, not four weeks of growth, so the row carries no delta.
+
+Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 2,451 PRs ≠ 2,451 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
 
 ---
 
