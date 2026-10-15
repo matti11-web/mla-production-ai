@@ -4,6 +4,8 @@ How I built the evidence to switch a ~1,000-page company website onto a new stac
 
 **Status:** Verification complete and green. **The cutover itself is scheduled for 26 August 2026 and had not been executed at time of writing.** This case study is about the proof, not the outcome — publishing it as a completed migration would be the exact failure mode it argues against.
 
+**Status update, 15 October 2026:** the cutover was executed on 28 August 2026 at 13:14 UTC — two days after the scheduled date, not on it. The site has run on the new stack since then and has not been rolled back. The text below is left as it was written before the switch. It still describes the proof, not the outcome.
+
 ---
 
 ## The shape of the problem
@@ -73,4 +75,4 @@ That became a hard precondition in the cutover runbook: **re-run the full batter
 
 ---
 
-**Verification built and green:** July–August 2026. **Cutover scheduled:** 26 August 2026 — not executed at the time this was written. I will update the status line rather than quietly rewrite the tense.
+**Verification built and green:** July–August 2026. **Cutover scheduled:** 26 August 2026 — not executed at the time this was written. I will update the status line rather than quietly rewrite the tense. **Cutover executed:** 28 August 2026, 13:14 UTC (status update added 15 October 2026).
