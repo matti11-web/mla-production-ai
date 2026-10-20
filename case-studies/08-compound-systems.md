@@ -33,7 +33,7 @@ None of the five steps is impressive alone. The composition works because of dec
 
 1. **Shared data layer.** The platform modules ([case 04](04-construction-erp-platform.md)) run on the same edge database family (Cloudflare D1), so "put this here and reference it there" is a query, not an integration project.
 2. **One vector index, multiple frontends.** Semantic search was built once and shared. Adding a document to the vault upgrades every app that queries the index, for free.
-3. **A 15-year-old vendor ERP, mirrored read-only.** Operational data (articles, dossiers, invoices) from the legacy ERP is mirrored on a schedule into the same edge database. The AI session can join "what the supplier says" against "what we actually sell" without touching the ERP itself.
+3. **A vendor ERP, mirrored read-only.** Operational data (articles, dossiers, invoices) from the ERP is mirrored on a schedule into the same edge database. The AI session can join "what the supplier says" against "what we actually sell" without touching the ERP itself.
 4. **Skills as routing.** Recurring operations (filing conventions, brand rules, pricing logic) are encoded as reusable skills, so the session doesn't re-derive process from scratch — it invokes it.
 5. **Persistent memory.** Cross-session state ([case 01](01-semantic-memory-recall.md)) is what turns five one-off actions into a durable change the next session builds on.
 
