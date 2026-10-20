@@ -1,8 +1,14 @@
 # Autonomous Multi-PR Pipelines
 
+> **In business terms**
+>
+> - **Problem:** One long AI session working through a whole plan produces one huge change that is slow and risky to check.
+> - **What changed:** Each plan item is built separately, checked by review agents, and handed over as its own small change.
+> - **Result:** 5–10 reviewable changes per run, and a human still approves every merge.
+
 A local orchestration pattern for turning a roadmap into several independent pull requests, with each PR built, reviewed, and left ready for human merge. Built because one long LLM session is the wrong shape for multi-workstream delivery.
 
-**Status:** In active use across application and infrastructure work through mid-2026. A wrapper loop spawns one fresh large-context implementation session per iteration; each iteration works one item on its own branch and opens a PR behind reviewer-agent gates; state is handed between iterations through a progress artifact. Since first validation the pattern has grown a scheduled front-end (see *The governance layer* below). Throughout, one thing has not moved: I merge; the loop does not.
+**Status:** In active use across application and infrastructure work since May 2026. A wrapper loop spawns one fresh large-context implementation session per iteration; each iteration works one item on its own branch and opens a PR behind reviewer-agent gates; state is handed between iterations through a progress artifact. Since first validation the pattern has grown a scheduled front-end (see *The governance layer* below). Throughout, one thing has not moved: I merge; the loop does not.
 
 ---
 
@@ -160,4 +166,4 @@ The reusable pattern is the contract: roadmap decomposition, branch isolation, e
 
 ---
 
-**Codified:** May 2026, as a reusable skill after the first validated overnight runs. Extended mid-2026 with a scheduled launcher front-end, whose launch-time approval tap was then removed in August 2026 (see errata). The merge decision and destructive-action authority stayed with me throughout.
+**Codified:** May 2026, as a reusable skill after the first validated overnight runs. Extended between May and August 2026 with a scheduled launcher front-end, whose launch-time approval tap was then removed in August 2026 (see errata). The merge decision and destructive-action authority stayed with me throughout.

@@ -66,7 +66,7 @@ AI commoditizes *writing code*. It does **not** commoditize *knowing what to bui
 
 ## Proof, not claim
 
-I'd rather show than assert. This repo documents real deployed systems — a 136K-LOC platform, a semantic-memory search system, autonomous multi-PR build pipelines, PDF-extraction layers — built in months, solo, with AI.
+I'd rather show than assert. This repo documents real deployed systems — a ~136K-LOC platform ([measured in case 04](case-studies/04-construction-erp-platform.md#outcomes)), a semantic-memory search system, autonomous multi-PR build pipelines, PDF-extraction layers — built in months, solo, with AI.
 
 See the [case studies](case-studies/) for the systems, the [patterns](patterns/) for the reusable methods, and the [numbers](README.md#by-the-numbers) for the verifiable measures.
 

@@ -1,5 +1,11 @@
 # Building an English-Language Media Brand, Solo
 
+> **In business terms**
+>
+> - **Problem:** A media brand usually needs a designer, web developer, content producer and analyst; there were only evening hours.
+> - **What changed:** One person built the identity, website, short-video pipeline and YouTube analytics with AI, on free-tier hosting.
+> - **Result:** The full brand stack is live at near-zero infrastructure cost. Audience growth is not claimed.
+
 A complete media-brand build — identity, website, content system, and an analytics loop — for [Midstint Racing](https://midstintracing.com), a GT3 endurance sim-racing team on iRacing. Same strategy-to-execution loop as the rest of this repo, applied to a marketing problem instead of an ERP.
 
 **Status:** Live. Brand guidelines, vector identity, stream-overlay system, an Astro website on Cloudflare with a race-report blog, and a Python analytics toolkit against the YouTube APIs. Deliberately **not** a growth story — the channel is early-stage, and this case documents the build capability, not audience numbers.

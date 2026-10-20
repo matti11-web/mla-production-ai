@@ -1,5 +1,11 @@
 # Hash-Chain Document Signing
 
+> **In business terms**
+>
+> - **Problem:** The screen could say "signed" while the stored signed PDF was missing or outdated.
+> - **What changed:** Signing now produces the signed PDF, a completion certificate and a tamper-evident event log, and fails loudly instead of silently.
+> - **Result:** Every signature can be checked afterwards in one place: document, certificate and history together.
+
 A document-signing workflow with signed-PDF generation, completion certificates, per-page signature metadata, and an append-only event hash chain for tamper detection.
 
 **Status:** Built as an internal signing system for a European construction SME. It is not presented as a qualified electronic signature system. The hash chain is a defense-in-depth integrity layer, not a substitute for a qualified trust service provider.

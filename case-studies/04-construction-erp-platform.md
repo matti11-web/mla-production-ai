@@ -1,5 +1,11 @@
 # Construction-Industry ERP Platform
 
+> **In business terms**
+>
+> - **Problem:** The business ran on separate tools, spreadsheets, legacy calculators and people's memory; one off-the-shelf ERP did not fit.
+> - **What changed:** One person built a shared internal platform around the existing systems: CRM, signing, knowledge base, calculators, document checks.
+> - **Result:** 14 modules on one shared base, the core built in roughly three months; team adoption is ongoing.
+
 A Cloudflare-native internal platform for a European construction SME: CRM, document signing, knowledge vault, customer intelligence, calculators, task engine, and preparation workflows under one operating model.
 
 **Status:** Built solo with AI assistance from late February 2026 onward. Public details are intentionally architectural: module breadth, stack choices, delivery constraints, and lessons. No proprietary schemas, customer data, commercial rules, or source code are published.

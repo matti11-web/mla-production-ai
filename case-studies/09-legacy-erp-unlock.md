@@ -1,5 +1,11 @@
 # Building on a Vendor ERP (Read-Only)
 
+> **In business terms**
+>
+> - **Problem:** The operational data lived in a vendor ERP with no public API, and replacing it was not the first step.
+> - **What changed:** A read-only connection mirrors the data nightly, plus every 15 minutes during the day for planning and service data.
+> - **Result:** Modern apps and analysis use the ERP data without writing to it and without a migration project.
+
 The operational truth of the business — 213 tables, ~4.3 million rows — lived in a vendor ERP built around a Windows desktop application. No public API, no export pipeline, and no reason to make replacing it the first step. This is how that data became queryable by modern applications without touching the system of record.
 
 **Status:** Read-only gateway and mirror in production, 2026. Semantic search over the article catalog live in two internal frontends. Updated 20 October 2026: the mirror now runs at two speeds (see below).

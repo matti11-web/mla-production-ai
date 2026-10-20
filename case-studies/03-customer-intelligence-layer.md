@@ -1,5 +1,11 @@
 # Customer Intelligence Layer
 
+> **In business terms**
+>
+> - **Problem:** Signed order forms and calculations could disagree, and nobody compared them field by field before production work began.
+> - **What changed:** The PDFs are read automatically from their own text and key fields are compared exactly; deviations need a written reason.
+> - **Result:** Documents become workflow data the team can check, instead of attachments someone has to open.
+
 A document-intelligence layer that turns operational PDFs from a European construction SME into structured, queryable records. No OCR, no manual re-entry, and no generic "chat with your PDF" abstraction where deterministic parsing is the better tool.
 
 **Status:** Deployed and in validation use across order-form parsing, comparison workflows, and CRM intelligence design; team adoption is ongoing. The public version is sanitized: vendor names, schemas, customer data, and proprietary document examples are intentionally omitted.

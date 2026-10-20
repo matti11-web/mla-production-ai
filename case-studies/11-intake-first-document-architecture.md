@@ -1,5 +1,11 @@
 # Killing the Folder Tree — Intake-First Document Architecture
 
+> **In business terms**
+>
+> - **Problem:** Two document stores drifted apart, and nobody knew for sure where a file should go.
+> - **What changed:** One controlled intake point, one shared topic code, everything lands as a draft; the folder tree goes.
+> - **Result:** Writing the design down exposed a silent bug that cut long documents at 30,000 characters; a check now catches it.
+
 Two document systems in the same company had started to drift apart. This is the architecture decision that stopped it, what was already running when the decision was made, and the silent bug the design review surfaced.
 
 **Status:** Architecture decided 18 August 2026 in a whiteboard session. Roughly half the pieces were already in production before the decision; the rest is scoped, not built. Where that line falls is stated explicitly below, because a design write-up that blurs it is marketing.
