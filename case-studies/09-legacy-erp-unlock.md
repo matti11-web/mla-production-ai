@@ -24,7 +24,8 @@ Constraints I had to accept as fixed:
               │  identifier-validated, rate-limited)
               ▼
    Scheduled worker (nightly full snapshot + reconcile,
-                     plus a 15-minute daytime pass on planning data)
+                     plus a 15-minute daytime pass on planning
+                     and after-sales service data)
               │
               ▼
    Edge database (D1)  ──►  internal apps, reporting, margin analysis
@@ -38,7 +39,7 @@ Three decisions carried the design:
 
 **Full snapshot + delete-reconcile as the backbone, incremental only on top.** The obvious design is incremental sync on a change-timestamp column. On its own it doesn't survive contact with the data: the change column is NULL on roughly two-thirds of rows in the highest-volume tables, and the ERP hard-deletes rows without any tombstone. Incremental sync would silently miss both. So the nightly run stages the primary keys it saw, then deletes mirror rows that no longer exist upstream — gated so a partial run can never trigger a mass delete. Slower, and correct regardless of upstream metadata quality. Since late September it also writes only the rows that actually changed, which cut database writes sharply.
 
-Nightly turned out to be too slow for planning, so a second, faster pass was added: every 15 minutes on working days, it fetches only the changes for the planning data that teams need the same day. The two passes never mix. The daytime pass can never delete anything, it stands down while the nightly pass owns the mirror, and the next nightly run corrects anything it missed.
+Nightly turned out to be too slow for planning, so a second, faster pass was added: every 15 minutes on working days, it fetches only the changes for the planning data that teams need the same day. On 20 October 2026 the after-sales service tables joined that pass: the service team had been working on data from the day before. Before adding them, we checked live that both tables stamp their change column on every write, a status change included. The two passes never mix. The daytime pass can never delete anything, it stands down while the nightly pass owns the mirror, and the next nightly run corrects anything it missed.
 
 **Embedding index on top, not inside.** The article catalog (~19K items) is embedded into a vector index that several frontends query. Semantic search — "wide sliding door with a thermal break" instead of an article code — became a shared capability rather than a per-app feature.
 
@@ -71,7 +72,7 @@ Generalisable lesson: **in a long-lived schema, column semantics are archaeology
 
 ## Limits, stated plainly
 
-- **Freshness differs per table, and none of it is real-time.** Planning data refreshes every 15 minutes on working days. Everything else is nightly, which is correct for reporting and analysis and wrong for anything transactional. After-sales service data is still nightly, and that is already too slow for the service team: moving it to the daytime pass is the next step.
+- **Freshness differs per table, and none of it is real-time.** Planning and after-sales service data refresh every 15 minutes on working days. Everything else is nightly, which is correct for reporting and analysis and wrong for anything transactional. Older service lines from before the change column was filled still only update with the nightly run.
 - **Availability of the source still gates the sync window.** Runs align to when the gateway host is actually up.
 - **Access credentials remain broader than they should be** on the ERP side. A dedicated read-only database login is requested and still open — worth naming, because "the mirror is read-only" describes my layer, not the whole chain.
 
