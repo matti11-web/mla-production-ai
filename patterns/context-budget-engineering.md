@@ -51,7 +51,7 @@ One non-obvious accounting note: graduating a memory item into an always-on rule
 
 ### 4. Retrieval instead of residence
 
-The strongest form of the pattern: knowledge that lives in a semantic index costs **zero** always-on tokens. My `/recall` system (case study 01) searches ~17K chunks of memory, rules, skills, and project docs by concept. Anything searchable-on-demand doesn't need to be resident. The always-on budget should hold only what must *never* be missed — everything else is a retrieval problem.
+The strongest form of the pattern: knowledge that lives in a semantic index costs **zero** always-on tokens. My `/recall` system (case study 01) searches memory, rules, skills, and project docs by concept (106,795 chunks as of 15 October 2026). Anything searchable-on-demand doesn't need to be resident. The always-on budget should hold only what must *never* be missed — everything else is a retrieval problem.
 
 ### 5. Move domain rules into the skills that own them
 

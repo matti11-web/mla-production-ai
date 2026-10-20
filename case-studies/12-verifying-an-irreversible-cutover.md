@@ -1,5 +1,11 @@
 # Verifying an Irreversible Cutover
 
+> **In business terms**
+>
+> - **Problem:** Switching a ~1,000-page website is a DNS change; afterwards the old site can no longer be compared.
+> - **What changed:** Before the switch, automated checks compared every page's address, content and appearance between old and new.
+> - **Result:** The switch happened on 28 August 2026 and had not been rolled back as of 15 October 2026.
+
 How I built the evidence to switch a ~1,000-page company website onto a new stack, when the switch itself is a DNS change and there is no diff afterwards.
 
 **Status:** Verification complete and green. **The cutover itself is scheduled for 26 August 2026 and had not been executed at time of writing.** This case study is about the proof, not the outcome — publishing it as a completed migration would be the exact failure mode it argues against.

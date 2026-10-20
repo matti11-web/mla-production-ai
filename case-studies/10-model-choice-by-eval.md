@@ -1,8 +1,14 @@
 # Choosing a Model With an Eval, Not a Vibe
 
+> **In business terms**
+>
+> - **Problem:** A summary feature ran on the cheapest model, chosen from a test on a different task.
+> - **What changed:** A blind test on four real documents compared four model setups using the exact production instructions.
+> - **Result:** The cheap model failed three of four documents; the fix costs about five cents more per summary.
+
 A production summarization feature ran on the cheapest capable model. A blind evaluation on real inputs showed it was failing three out of four times — silently, in a way no error log would ever surface. This is the harness that found it.
 
-**Status:** Eval run July 2026; the model swap it recommended is a configuration change awaiting sign-off.
+**Status:** Eval run July 2026. At the time of writing (July 2026) the model swap it recommended was a configuration change awaiting sign-off; this case study does not track the rollout after that.
 
 ---
 

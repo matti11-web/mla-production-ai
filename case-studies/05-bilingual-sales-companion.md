@@ -1,5 +1,11 @@
 # Bilingual Sales Companion
 
+> **In business terms**
+>
+> - **Problem:** Sales juggled duplicate leads, mixed Dutch/French data and follow-ups that depended on someone remembering them.
+> - **What changed:** A sales tool that suggests lead categories, finds related past records and automates the steps after a quote is signed.
+> - **Result:** The CRM surfaces context a salesperson would otherwise have to remember; AI suggests, people decide.
+
 A CRM and sales-operations companion for a bilingual construction sales team: leads, contacts, pipeline stages, quotes, AI classification, related-record discovery, signing flows, and post-signature automation.
 
 **Status:** Built and deployed for internal use; team rollout and adoption are ongoing. Public details are sanitized around architecture and product decisions; customer records, employee-specific performance details, schemas, and proprietary workflows are not included.

@@ -1,8 +1,14 @@
 # Semantic Memory for LLM Sessions (`/recall`)
 
+> **In business terms**
+>
+> - **Problem:** Past decisions and notes were spread over thousands of files; keyword search missed things, costing 10–20 minutes per session.
+> - **What changed:** A search index that finds notes by meaning, not exact words, and refreshes itself after every work session.
+> - **Result:** Relevant past notes come back in under half a second, for a fraction of a cent per search.
+
 A single-file semantic search index that lets me find what I wrote three months ago by *concept*, not keyword. Built because grep was missing things that mattered.
 
-**Status:** In active daily use against my own ~16,900-chunk personal corpus (memory + rules + skills + project dev-docs; measured July 2026 — the corpus more than doubled since the June figure in earlier versions of this document, driven almost entirely by project dev-docs). Cohere `embed-v4.0` (1,536-dim) for embedding, optional `rerank-v3.5` for high-precision queries, numpy for brute-force cosine similarity.
+**Status:** In active daily use against my own personal corpus (memory + rules + skills + project dev-docs). The figures in this case study are as of 1 September 2026: 20,927 chunks across 2,600 files. On 20 September 2026 the index scope widened to the project documentation of every track, so the current count is larger: 106,795 chunks across 10,681 files as of 15 October 2026 (see [By the numbers](../README.md#by-the-numbers)). Cohere `embed-v4.0` (1,536-dim) for embedding, optional `rerank-v3.5` for high-precision queries, numpy for brute-force cosine similarity.
 
 ---
 
@@ -33,7 +39,7 @@ A semantic search index over the whole corpus would mean: query by concept, get 
 
 ```
                     ┌─────────────────────────────────────────┐
-                    │ Corpus (~2,170 .md files, ~16.9K chunks)│
+                    │ Corpus (~2,600 .md files, ~20.9K chunks)│
                     │ memory/ + rules/ + skills/ + dev-docs/  │
                     └────────────────┬────────────────────────┘
                                      │ reindex.py (--delta or full)
@@ -159,4 +165,4 @@ If the design is interesting and you'd want a similar system for your own corpus
 
 ---
 
-**Built:** 2026-05-24, extended 2026-05-25 (rules+skills indexing, visualization, duplicate-detection, stale-check, reranker), extended 2026-05-27 (project dev-docs). Figures refreshed 2026-07-23.
+**Built:** 2026-05-24, extended 2026-05-25 (rules+skills indexing, visualization, duplicate-detection, stale-check, reranker), extended 2026-05-27 (project dev-docs). Figures refreshed 2026-09-01; the current corpus size (after the 20 September scope change) is in the README.

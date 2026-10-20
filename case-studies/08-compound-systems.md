@@ -1,6 +1,12 @@
 # Compound Systems: One Email, Five Systems
 
-What building on shared data layers for ~5 months actually buys you. This is not a case study about one system — it's about what happens *between* the systems documented in cases 01–07 once they share infrastructure.
+> **In business terms**
+>
+> - **Problem:** Updating one supplier document normally means separate manual edits in several systems.
+> - **What changed:** Systems built since February 2026 share one database family, one search index and one memory.
+> - **Result:** One email and one instruction update five systems; a human reviews everything customers will see.
+
+What building on shared data layers since February 2026 actually buys you. This is not a case study about one system — it's about what happens *between* the systems documented in cases 01–07 once they share infrastructure.
 
 **Status:** Describes a working production flow, July 2026. Deliberately neutral in tone: the individual pieces are ordinary; the point is the composition.
 
