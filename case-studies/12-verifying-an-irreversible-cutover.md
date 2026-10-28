@@ -2,17 +2,26 @@
 
 > **In business terms**
 >
-> - **Problem:** Switching a ~1,000-page website is a DNS change; afterwards the old site can no longer be compared.
-> - **What changed:** Before the switch, automated checks compared every page's address, content and appearance between old and new.
-> - **Result:** The switch happened on 28 August 2026 and had not been rolled back as of 15 October 2026.
+> - **Problem:** The company website is the channel for most of the company's won sales. It has around 1,000 public pages in two languages. A move to a new platform is a DNS switch. After the switch, the old site can no longer be compared. A page lost in the move is lost search traffic and lost leads, and nobody sees it until sales drop.
+> - **What changed:** Before the switch, automated checks compared every page between old and new: the address, the content and the look. Checking about 1,000 pages by hand is not possible in practice. The checks did it on every run.
+> - **Result:** The switch happened on 28 August 2026. Before it, the checks found 110 missing call-to-action buttons on 102 pages in the build that was going to ship. That defect was fixed before the switch. The way back to the old site was a single edge rule that takes seconds, not a DNS change that takes hours.
 
-How I built the evidence to switch a ~1,000-page company website onto a new stack, when the switch itself is a DNS change and there is no diff afterwards.
+This case study leads with pages at risk, not with money saved. I have no verified figure for the cost of the old platform against the new hosting. I have no verified search traffic figures from before and after the switch. The money figure here is the share of sales that depends on the site, which is what a failed cutover puts at risk.
 
-**Status:** Verification complete and green. **The cutover itself is scheduled for 26 August 2026 and had not been executed at time of writing.** This case study is about the proof, not the outcome — publishing it as a completed migration would be the exact failure mode it argues against.
+**Status:** Verification complete and green. **The cutover itself is scheduled for 26 August 2026 and had not been executed at time of writing.** This case study is about the proof, not the outcome. Publishing it as a completed migration would be the exact failure mode it argues against.
 
-**Status update, 15 October 2026:** the cutover was executed on 28 August 2026 at 13:14 UTC — two days after the scheduled date, not on it. The site has run on the new stack since then and has not been rolled back. The text below is left as it was written before the switch. It still describes the proof, not the outcome.
+**Status update, 15 October 2026:** the cutover was executed on 28 August 2026 at 13:14 UTC, two days after the scheduled date. The site has run on the new stack since then and has not been rolled back. The technical text below is left as it was written before the switch. It still describes the proof, not the outcome.
+
+**Status update, 28 October 2026:** the opening was rewritten to lead with what was at risk. The 110 missing buttons were closed on 18 August 2026, before the switch: a full re-import of the production data and a re-measurement found zero real differences between staging and production.
 
 ---
+
+## What was at risk
+
+- **Sales.** The website is the channel for most of the company's won sales. The contact and quote forms are the main way leads arrive.
+- **Pages.** 1,025 public URLs at the time of the switch: 513 in Dutch and 512 in French. Each one can be bookmarked, linked from another site, or ranked in search.
+- **Search position.** The domain has about 20 years of search history. Search engines do not reset that history when the domain stays the same. The risk is in the execution: a changed or missing URL loses its ranking.
+- **Effort.** The plan for the whole migration was about 242 hours over 36 work items. A cutover that fails and has to be repeated burns a large part of that again.
 
 ## The shape of the problem
 
@@ -32,7 +41,7 @@ This is the boring gate and it is the one that saves you. A 404 on a page nobody
 
 ### 2. Content parity — is the same content actually there?
 
-Per path, compare the sequence of content blocks between old and new. Not a text diff — a structural one. A text diff on a rebuilt site is noise; every whitespace and markup change fires. The sequence of blocks is the thing that has to survive.
+Per path, compare the sequence of content blocks between old and new. Not a text diff — a structural one. A text diff on a rebuilt site is noise. Every whitespace and markup change fires. The sequence of blocks is the thing that has to survive.
 
 ### 3. Visual parity — a sampled pixel diff, with every outlier explained
 
@@ -62,23 +71,23 @@ Staging and production had drifted. Every green result I had was a true statemen
 
 That became a hard precondition in the cutover runbook: **re-run the full battery against the production build, and treat a staging-only pass as no pass at all.** It cost a day. It would have cost a week of "why did our contact conversions drop after the relaunch" if it had been found later — or never, which is worse.
 
-## What I would tell anyone facing the same switch
+## What generalises
 
 - **Split the irreversible step into the smallest possible atom, and verify each precursor on its own.** Moving DNS control, changing the origin, and decommissioning the old host are three separate events. Doing them as one heroic Tuesday means a rollback has to undo all three.
-- **Run the gate against the artifact you will actually ship.** Not the branch, not staging, not "it's basically the same build". This is the single most transferable line in this write-up.
+- **Run the gate against the artifact you will actually ship.** Not the branch, not staging, not "it is basically the same build". This is the single most transferable line in this write-up.
 - **Every visual outlier gets a written explanation or a fix.** There is no third bucket. The moment "known difference" becomes a shrug instead of a sentence, the gate stops working.
-- **Structural comparison misses attribute-level loss.** Block sequences matched perfectly while 110 buttons were gone. Any comparison you build has a blind spot; the useful question is which one, and what second check covers it.
+- **Structural comparison misses attribute-level loss.** Block sequences matched perfectly while 110 buttons were gone. Any comparison you build has a blind spot. The useful question is which one, and what second check covers it.
 - **Verification tools are read-only, and separate from the tools that write.** A read path that shares a binary with a write path will eventually be run in the wrong mode by a tired person at 23:00.
 - **The old system does not get patched after cutover.** Nobody maintains a CMS they have replaced. If the old origin stays reachable at all, it needs a firewall in front of it, not good intentions.
 
 ---
 
-## What I'm not publishing
+## What's NOT in this case study
 
 - The domain, the hosting providers, the agencies involved, and any record values
 - Repository paths, script internals, and the runbook itself
-- Traffic, conversion, and commercial figures
+- Traffic and conversion figures, and absolute revenue figures (only the share of sales that the site carries is given)
 
 ---
 
-**Verification built and green:** July–August 2026. **Cutover scheduled:** 26 August 2026 — not executed at the time this was written. I will update the status line rather than quietly rewrite the tense. **Cutover executed:** 28 August 2026, 13:14 UTC (status update added 15 October 2026).
+**Verification built and green:** July–August 2026. **Cutover scheduled:** 26 August 2026 — not executed at the time this was written. I will update the status line rather than quietly rewrite the tense. **Cutover executed:** 28 August 2026, 13:14 UTC (status update added 15 October 2026). **Opening rewritten:** 28 October 2026.
