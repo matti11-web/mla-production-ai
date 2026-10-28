@@ -26,6 +26,7 @@ No source code from client work is published here. Each case study describes the
 | [10](case-studies/10-model-choice-by-eval.md) | **Choosing a Model With an Eval** | Blind-jury evaluation on real, messy inputs: the incumbent cheap model was silently failing 3 of 4 production cases. Cost of the fix: ~5 cents per run. | Node · Anthropic API · blind LLM jury |
 | [11](case-studies/11-intake-first-document-architecture.md) | **Killing the Folder Tree** | Intake-first architecture for two document stores that were drifting apart: one controlled door, two stores, one shared topic code, everything lands as a draft. Includes the silent truncation bug the design review surfaced. | Workers · D1 · R2 · Vectorize · Claude |
 | [12](case-studies/12-verifying-an-irreversible-cutover.md) | **Verifying an Irreversible Cutover** | Proving a ~1,000-page site migration *before* the DNS switch, because there is no diff afterwards. Path, content and pixel parity gates — and the gate that ran green against the wrong artifact. | Astro · headless CMS · Cloudflare · Python · Playwright |
+| [13](case-studies/13-salon-off-saas.md) | **Taking a One-Person Salon Off a Paid SaaS** | Custom booking software for a one-person grooming salon, on real data four days after the first commit. The switch took seven more weeks, and the first leak came from my own links. | Workers · D1 · React · Astro · Playwright |
 
 ---
 
