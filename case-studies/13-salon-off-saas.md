@@ -8,7 +8,7 @@
 
 A one-person grooming salon ran its agenda, client file and online booking on a paid salon SaaS. I replaced it with software built for this one business. This is what the build was, and why the build was the short part.
 
-**Status:** First commit 23 July 2026. Running on the real database 27 July 2026. Daily use in the salon since 14 September 2026. Figures measured on 28 October 2026. The old subscription is not confirmed cancelled at the time of writing.
+**Status:** First commit 23 July 2026. Running on the real database 27 July 2026. Daily use in the salon since 14 September 2026. Figures measured on 28 October 2026. The old subscription is cancelled.
 
 ---
 
@@ -106,4 +106,4 @@ Then the first leak. A week later the owner said a client had booked in the old 
 
 ---
 
-**Built:** 23–27 July 2026. **Daily use since:** 14 September 2026. **Figures measured:** 28 October 2026. **Old subscription:** not confirmed cancelled at the time of writing. I will add a dated status line when it is, not rewrite the tense.
+**Built:** 23–27 July 2026. **Daily use since:** 14 September 2026. **Figures measured:** 28 October 2026. **Old subscription:** cancelled. **Last updated:** 28 October 2026.

@@ -61,7 +61,7 @@ Stated precisely, because "we designed a system" and "we run a system" are diffe
 - The audience field (decision 5).
 - Semantic search spanning both stores rather than the vault alone.
 
-Estimated at roughly a week of work. Not started at time of writing.
+Estimated at roughly a week of work. Not started on 18 August 2026.
 
 ## The bug the design review found
 
@@ -92,4 +92,4 @@ That check now exists. It was found by writing down what the system was supposed
 
 ---
 
-**Decided:** 18 August 2026. **Partly in production before that date**, as marked. Implementation of the remaining pieces had not started at time of writing.
+**Decided:** 18 August 2026. **Partly in production before that date**, as marked. Implementation of the remaining pieces had not started on that date.

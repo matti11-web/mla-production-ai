@@ -86,4 +86,4 @@ The salon case (case 13) shows the same gap from the other side: the build took 
 
 ---
 
-**Plan wrapper and tutorial series measured:** 3 August 2026. **Daily use measured:** 21 October 2026, over 21 September to 20 October 2026. **Plan wrapper:** no real user at the time of measurement. I will add a dated status line when the first real wraps appear, not rewrite the tense.
+**Plan wrapper and tutorial series measured:** 3 August 2026. **Daily use measured:** 21 October 2026, over 21 September to 20 October 2026. **Plan wrapper:** no real user on 3 August 2026. **Last updated:** 28 October 2026.

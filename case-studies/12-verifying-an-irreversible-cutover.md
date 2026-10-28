@@ -8,11 +8,7 @@
 
 This case study leads with pages at risk, not with money saved. I have no verified figure for the cost of the old platform against the new hosting. I have no verified search traffic figures from before and after the switch. The money figure here is the share of sales that depends on the site, which is what a failed cutover puts at risk.
 
-**Status:** Verification complete and green. **The cutover itself is scheduled for 26 August 2026 and had not been executed at time of writing.** This case study is about the proof, not the outcome. Publishing it as a completed migration would be the exact failure mode it argues against.
-
-**Status update, 15 October 2026:** the cutover was executed on 28 August 2026 at 13:14 UTC, two days after the scheduled date. The site has run on the new stack since then and has not been rolled back. The technical text below is left as it was written before the switch. It still describes the proof, not the outcome.
-
-**Status update, 28 October 2026:** the opening was rewritten to lead with what was at risk. The 110 missing buttons were closed on 18 August 2026, before the switch: a full re-import of the production data and a re-measurement found zero real differences between staging and production.
+**Status (28 October 2026):** The cutover ran on 28 August 2026 at 13:14 UTC, two days after the planned date. The site has run on the new stack since then. It has not been rolled back. The 110 missing buttons were closed on 18 August 2026, before the switch. A full re-import of the production data and a new measurement then found zero real differences between staging and production. This case study is about the proof before the switch, not about the results after it.
 
 ---
 
@@ -90,4 +86,4 @@ That became a hard precondition in the cutover runbook: **re-run the full batter
 
 ---
 
-**Verification built and green:** July–August 2026. **Cutover scheduled:** 26 August 2026 — not executed at the time this was written. I will update the status line rather than quietly rewrite the tense. **Cutover executed:** 28 August 2026, 13:14 UTC (status update added 15 October 2026). **Opening rewritten:** 28 October 2026.
+**Verification built:** July–August 2026. **Cutover:** 28 August 2026, 13:14 UTC. **Last updated:** 28 October 2026.

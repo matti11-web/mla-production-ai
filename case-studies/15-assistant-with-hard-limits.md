@@ -104,4 +104,4 @@ The prompt asks Cato to say plainly when it cannot do something. The code backs 
 
 ---
 
-**Built:** 15 October 2026 (responder) and 25 October 2026 (fix sessions). **Code measured:** 28 October 2026. **Volume and accuracy:** not measured at the time of writing. I will add a dated status line when they are, not rewrite the tense.
+**Built:** 15 October 2026 (responder) and 25 October 2026 (fix sessions). **Code measured:** 28 October 2026. **Volume and accuracy:** not measured yet. **Last updated:** 28 October 2026.

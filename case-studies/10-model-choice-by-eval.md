@@ -8,8 +8,7 @@
 
 Most AI mistakes do not look like mistakes. The answer arrives on time, it reads well, and nothing in the system reports a problem. This case study describes the method I use to find those mistakes before a customer does. The worked example is one evaluation of a summary feature. Two later evaluations show the same method at work.
 
-**Status:** Eval run July 2026. At the time of writing (July 2026) the model swap it recommended was a configuration change awaiting sign-off. This case study does not track the rollout after that.
-**Status (reframe, 28 October 2026):** Rewritten to present the July eval as an example of a general checking method. Two short examples from September 2026 were added. The July facts and figures are unchanged.
+**Status (28 October 2026):** The worked example is an eval from July 2026. The two later examples are from September 2026. This case study shows the method. It does not track each model change after the eval.
 
 ---
 
