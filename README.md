@@ -1,8 +1,8 @@
 # Matthias Labeeuw — Production AI
 
-Production AI projects, architecture patterns, and lessons learned from building a 14-module internal business platform and a 275-skill AI toolkit — solo, since February 2026.
+Production AI projects, architecture patterns, and lessons learned from building a 14-module internal business platform and the AI working environment around it — solo, since February 2026.
 
-I'm Matthias Labeeuw — **a business strategist and coach, not a developer.** For 15 years I built companies, coached teams, and drove commercial strategy. Then AI made software buildable by people who deeply understand business — and I had exactly the missing half. This repo is the proof: a 14-module internal platform, autonomous build pipelines, and 275 reusable AI skills, built solo with AI — documented as case studies, architecture patterns, and verifiable numbers.
+I'm Matthias Labeeuw — **a business strategist and coach, not a developer.** For 15 years I built companies, coached teams, and drove commercial strategy. Then AI made software buildable by people who deeply understand business — and I had exactly the missing half. This repo is the proof: a 14-module internal platform, autonomous build pipelines, and an AI working environment that I re-test when the models change, built solo with AI — documented as case studies, architecture patterns, and verifiable numbers.
 
 → **[How I work](how-i-work.md)** — the business-strategy × AI cocktail, and why the bottleneck was never the code.
 
@@ -30,6 +30,7 @@ No source code from client work is published here. Each case study describes the
 | [14](case-studies/14-shipped-is-not-used.md) | **Shipped Is Not Used: Measuring Adoption After the Merge** | A tool merged and verified in production had one record, my own test. Three measurements after the merge, and what each one changed next. | Workers · D1 · SQL · ffprobe |
 | [15](case-studies/15-assistant-with-hard-limits.md) | **An AI Assistant With Its Limits in Code, Not in the Prompt** | A WhatsApp assistant that replies on its own in a few group chats. The model only proposes. A double live gate, regex hard-stops, allowlisted chats and read-only sources decide what goes out. | Python · SQLite · Claude · WhatsApp bridge |
 | [16](case-studies/16-minutes-without-uploading-audio.md) | **Meeting Minutes Without Uploading the Audio** | Whisper on a local GPU transcribes the recording and only the text goes to the cloud for the summary: about 4 minutes for a 30-minute meeting, and the audio never leaves the building. | Python · faster-whisper · local GPU · Claude |
+| [17](case-studies/17-adapting-to-a-new-model-generation.md) | **Adapting the Setup When the Model Changes** | 275 skills and 27 always-on rules, re-tested against a newer model generation in 60 blind runs. Full and stripped context scored the same, and the only wrong price answers came from a stale document. Both skill packs retired, 21 skills left. | Claude Code · blind LLM judge · Python |
 
 ---
 
@@ -38,7 +39,7 @@ No source code from client work is published here. Each case study describes the
 | Pattern | Why it works |
 |---|---|
 | Cloudflare Workers + D1 + Hono | Edge-first, EU data-location options (D1 location hints), fast cold starts, zero servers to manage. Tradeoff: 128 MB memory cap forces stream-based file handling for anything >80 MB. |
-| Claude Code skills as plugin marketplaces | Skills compose like Unix tools. Domain knowledge (e.g. construction pricing) lives next to engineering skills (e.g. Hono routing) without conflict. |
+| Lean always-on context, references on demand | Only the rules that apply to every task load in every session. Domain knowledge loads when a task calls it, and it points to the code as the source of truth. Re-tested at each model generation, see [case 17](case-studies/17-adapting-to-a-new-model-generation.md). |
 | Multi-agent orchestration via Task tool | Model and reasoning effort are chosen per task type by measured evals, not by habit; currently the most capable model runs subagent work at low reasoning effort. Single agent always loses to specialized agents on long-context refactors. |
 | [Cold-read discipline](patterns/cold-read-discipline.md) | LLM output is fluent, not accurate — hallucinations arrive as plausible, specific, confident detail. A separate adversarial verification pass before action is non-negotiable. Full write-up. |
 | [Context-budget engineering](patterns/context-budget-engineering.md) | Always-on context (skill descriptions, rules, memory index) is a measurable tax on every session. Measured ~101K tokens, engineered down to ~71K, then to ~51K — without losing routing accuracy. Full write-up. |
@@ -54,11 +55,11 @@ All figures measured 15 October 2026 against my own repos and GitHub account (fi
 | Merged pull requests | 2,689 (of 2,755 opened — 97%) | +238 |
 | Commits I authored, on default branches | 6,278 across 43 repositories | not comparable — new counting method, see below |
 | Production D1 database migrations (forward-only) | 453 | not comparable — counted in full this time, see below |
-| Reusable AI skills authored/curated (deduplicated) | 275 | re-counted, unchanged |
+| Reusable AI skills that still load | 21 (counted 28 October 2026) | down from 275: both skill packs retired 24 October, see case 17 |
 | Production services under 24/7 synthetic monitoring | 8 | not re-counted — carried forward from 25 August |
 | Semantic memory corpus | 106,795 chunks across 10,681 files | +19,997 chunks, same index scope as 23 September |
 
-How each is counted: merged PRs from the GitHub Search API across my account; commits from the GitHub GraphQL API, default branch only, filtered to commits authored by my account; migrations as the forward-only `.sql` files in a `migrations/` folder on each repository's default branch, excluding `.down.sql` rollbacks; skills as the deduplicated union of my two private skill marketplaces; the memory corpus counted directly in the live embedding index (last rebuilt 11 October).
+How each is counted: merged PRs from the GitHub Search API across my account; commits from the GitHub GraphQL API, default branch only, filtered to commits authored by my account; migrations as the forward-only `.sql` files in a `migrations/` folder on each repository's default branch, excluding `.down.sql` rollbacks; skills as the skill folders that still load on 28 October, after the two private skill packs were retired; the memory corpus counted directly in the live embedding index (last rebuilt 11 October).
 
 Two rows changed method, so they carry no delta. Commits: the old count ran `git rev-list --count HEAD` on local checkouts. Most repositories moved to a GitHub organisation on 16 September, and the organisation also holds code that colleagues and contractors write. The new count asks GitHub directly and keeps only my own commits — 6,278 of the 8,272 on those default branches. Migrations: the old figure was a running total, the 29 August count plus files added since. This time every file is counted from scratch. Two repositories with migrations are left out because someone else wrote that code. On the old running total the figure would read 384 + 69.
 
@@ -84,4 +85,4 @@ Some detail stays private by design.
 - 15 years across entrepreneurship (founded multiple SMEs), business-strategy consulting, sales leadership, and coaching (sales teams, real-estate agents, founders).
 - Today: Commercial Director at a European construction SME — and turning business strategy into working software with AI.
 - The fusion: deep commercial judgment × coaching/requirement-extraction × AI-and-software fluency. See [How I work](how-i-work.md).
-- [LinkedIn](https://www.linkedin.com/in/matthias-labeeuw-6576694b) · Plus a 275-skill Claude Code toolkit organised in domain packs — kept private (it encodes client-specific domain knowledge); the reusable patterns are documented in the case studies here.
+- [LinkedIn](https://www.linkedin.com/in/matthias-labeeuw-6576694b) · My Claude Code skills and rules stay private (they encode client-specific domain knowledge). The reusable patterns are documented in the case studies here.
