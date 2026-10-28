@@ -75,4 +75,4 @@ Some meetings also need a recorded consent flag before the Hub will process them
 
 ---
 
-**Cloud route stalled:** 30 September 2026. **Local route chosen:** 30 September 2026. **Timings noted:** 30 September 2026, approximate. **GPU confirmed:** 28 October 2026. I will add a dated status line when I time the local route on a set of real meetings, not rewrite the tense.
+**Cloud route stalled:** 30 September 2026. **Local route chosen:** 30 September 2026. **Timings noted:** 30 September 2026, approximate. **GPU confirmed:** 28 October 2026. **Last updated:** 28 October 2026.
