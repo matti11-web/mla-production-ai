@@ -48,24 +48,26 @@ No source code from client work is published here. Each case study describes the
 
 ## By the numbers
 
-All figures measured 15 October 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 228 days).
+All figures measured 11 November 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 255 days).
 
-| Metric | Value | Change since 23 September |
+| Metric | Value | Change since 15 October |
 |---|---|---|
-| Merged pull requests | 2,689 (of 2,755 opened — 97%) | +238 |
-| Commits I authored, on default branches | 6,278 across 43 repositories | not comparable — new counting method, see below |
-| Production D1 database migrations (forward-only) | 453 | not comparable — counted in full this time, see below |
-| Reusable AI skills that still load | 21 (counted 28 October 2026) | down from 275: both skill packs retired 24 October, see case 17 |
+| Merged pull requests | 3,039 (of 3,117 opened — 97%) | +350 |
+| Commits I authored, on default branches | 6,740 across 51 repositories | +462 commits, +8 repositories |
+| Production D1 database migrations (forward-only) | 481 | +28 |
+| Reusable AI skills that still load | 23 | +2 since the 28 October count of 21. Down from 275 before both skill packs were retired on 24 October, see case 17 |
 | Production services under 24/7 synthetic monitoring | 8 | not re-counted — carried forward from 25 August |
-| Semantic memory corpus | 106,795 chunks across 10,681 files | +19,997 chunks, same index scope as 23 September |
+| Semantic memory corpus | 125,659 chunks across 12,445 files | +18,864 chunks. The index scope only got smaller, see below |
 
-How each is counted: merged PRs from the GitHub Search API across my account; commits from the GitHub GraphQL API, default branch only, filtered to commits authored by my account; migrations as the forward-only `.sql` files in a `migrations/` folder on each repository's default branch, excluding `.down.sql` rollbacks; skills as the skill folders that still load on 28 October, after the two private skill packs were retired; the memory corpus counted directly in the live embedding index (last rebuilt 11 October).
+How each is counted: merged PRs from the GitHub Search API across my account; commits from the GitHub GraphQL API, default branch only, filtered to commits authored by my account; migrations as the forward-only `.sql` files in a `migrations/` folder on each repository's default branch, excluding `.down.sql` rollbacks; skills as the skill folders that still load; the memory corpus counted directly in the live embedding index (last rebuilt 10 November).
 
-Two rows changed method, so they carry no delta. Commits: the old count ran `git rev-list --count HEAD` on local checkouts. Most repositories moved to a GitHub organisation on 16 September, and the organisation also holds code that colleagues and contractors write. The new count asks GitHub directly and keeps only my own commits — 6,278 of the 8,272 on those default branches. Migrations: the old figure was a running total, the 29 August count plus files added since. This time every file is counted from scratch. Two repositories with migrations are left out because someone else wrote that code. On the old running total the figure would read 384 + 69.
+No counting method changed since 15 October, so every row carries a delta. Commits: most repositories moved to a GitHub organisation on 16 September, and the organisation also holds code that colleagues and contractors write. The count asks GitHub directly and keeps only my own commits — 6,740 of the 8,994 on those default branches. Migrations: every file is counted from scratch. Two repositories with migrations are left out because someone else wrote that code. Memory corpus: since 15 October the index stopped reading three sources (the retired skill packs, blind acceptance tests and private chat exports), so the growth comes from new files, not from a wider scope.
+
+As a check, the same queries limited to 15 October give 2,697 merged PRs, 6,288 commits and 454 migrations. That is within 0.4% of the figures published that day, because the first count ran during the day.
 
 Monitoring is still carried forward: counting it needs a manual look, not a command.
 
-Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 2,689 PRs ≠ 2,689 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
+Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 3,039 PRs ≠ 3,039 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
 
 ---
 
