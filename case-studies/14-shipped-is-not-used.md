@@ -8,7 +8,7 @@
 
 I build internal software for a building company with AI. Merging is cheap now. That makes it easy to confuse "shipped" with "done". This case study shows three measurements I took after the merge, and what each one changed.
 
-**Status:** Plan wrapper measured on 3 August 2026. Tutorial series measured on 3 August 2026. Daily use measured on 21 October 2026, over the 30 days from 21 September to 20 October.
+**Status:** Plan wrapper measured on 3 August 2026. Tutorial series measured on 3 August 2026. Daily use measured on 21 October 2026, over the 30 days from 21 September to 20 October. **All three measured again on 17 November 2026.** The updates are marked in each case.
 
 ---
 
@@ -31,6 +31,8 @@ This had happened before in the same project. An older text library never got a 
 
 What the count changed: I did not close the project. The old engine still runs in production, and one work item stays open to remove it. It stays open until real users make real wraps.
 
+**Update, 17 November 2026:** 5 wraps in total. 3 are mine. 2 come from two colleagues, one in August and one in October. There were none after 6 October. The standard texts are still at 0, so every appendix is still empty. The work item stays open.
+
 ## Case two: a tutorial series past its limit
 
 The CRM has a tutorial series for the sales team: 14 videos, in Dutch and French. The goal was that a sales rep can learn the CRM alone. The series had a limit of 20 minutes in total.
@@ -42,6 +44,8 @@ I measured all 14 files on 3 August 2026. The Dutch series runs 20:20. The Frenc
 What the measurement changed: the question became a decision for me, not a background fact. The options are to drop the limit, shorten a video, or remove the 14th video.
 
 The usage measurement below adds a second fact. On 21 October 2026, the academy module in the Hub was close to unused. A series that exists and is linked is still not a series that is watched.
+
+**Update, 17 November 2026:** the files have not changed. The series still runs 20:20 in Dutch and 20:22 in French. Over the 30 days to 16 November, the academy in the Hub had 31 page views from 7 people.
 
 ## Case three: daily use by the sales team
 
@@ -58,6 +62,8 @@ Measured on 21 October 2026, over the last 30 days:
 The limits of this data are part of the result. Minutes come from a heartbeat every 30 seconds while the tab is visible. A tab left open still counts. A page view is not an action. So I read these figures as "people are there", not as "people do the work there".
 
 What the measurement changed: daily use of the CRM is now measured, not assumed. The modules with almost no use are a separate list. For those, the next question is why, not what to build next.
+
+**Update, 17 November 2026,** over the 30 days from 18 October to 16 November: all 7 active sales reps still use the CRM, 3.9 to 4.3 workdays per week. One of the two lower weeks has a public holiday. The median is now 30 minutes per rep per active day.
 
 ## The pattern
 
@@ -86,4 +92,4 @@ The salon case (case 13) shows the same gap from the other side: the build took 
 
 ---
 
-**Plan wrapper and tutorial series measured:** 3 August 2026. **Daily use measured:** 21 October 2026, over 21 September to 20 October 2026. **Plan wrapper:** no real user on 3 August 2026. **Last updated:** 28 October 2026.
+**Plan wrapper and tutorial series measured:** 3 August 2026. **Daily use measured:** 21 October 2026, over 21 September to 20 October 2026. **Plan wrapper:** no real user on 3 August 2026, 2 real wraps by 17 November 2026. **Re-measured:** 17 November 2026. **Last updated:** 17 November 2026.
