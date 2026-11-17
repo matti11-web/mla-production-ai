@@ -1,78 +1,105 @@
-# Shipped Is Not Used: Measuring Adoption After the Merge
+# From Shipped to Used: The Non-AI Part of Four Rollouts
 
 > **In business terms**
 >
-> - **Problem:** A feature can be merged, deployed and verified in production, and still never be used. The pull request does not tell you.
-> - **What changed:** After shipping, I query the real database and the real usage data. I treat that result as the status of the feature, not the merge.
-> - **Result:** One tool that looked finished had one record, and that record was my own test. A tutorial series had grown past its own length limit without anyone noticing. Daily use by the sales team was measured, not assumed. Each result changed what I did next.
+> - **Problem:** AI made building software fast. It did not make people change how they work. A tool that is merged and live can still sit unused next to the old Excel file, the notebook or the paper folder.
+> - **What changed:** For four internal tools I did the part that is not code. I explained the idea, agreed the new way of working with the people who do the work, set a date for the old way to stop, and then kept changing the tool on their feedback until they used it on their own.
+> - **Result:** The sales team now works in the CRM about 4 days a week. Calculator use by colleagues tripled. Operations plans the after-sales day in the Hub instead of on paper. Sales hands over sold projects through one structured report. The one tool where I skipped this work was used 5 times in three and a half months.
 
-I build internal software for a building company with AI. Merging is cheap now. That makes it easy to confuse "shipped" with "done". This case study shows three measurements I took after the merge, and what each one changed.
+I build internal software for a building company with AI. The code is the fast part. This case study is about the slow part: getting people to use it, and keep using it, because it makes their own work easier.
 
-**Status:** Plan wrapper measured on 3 August 2026. Tutorial series measured on 3 August 2026. Daily use measured on 21 October 2026, over the 30 days from 21 September to 20 October.
+**Status:** Usage measured on 17 November 2026 on the production databases. Monthly figures exclude my own account and test accounts.
 
 ---
 
-## Case one: a tool with one record
+## The method, in five steps
 
-The Hub has a tool that wraps supplier drawings with a company cover page and a standard text appendix. A project manager uses it to send plans to a client.
+The same five steps came back in all four rollouts.
 
-The last series of pull requests ran from #450 to #455. All of them merged. Both database migrations ran in production and I checked them on content. There were no open pull requests and no loose branches. By every engineering measure, the work was finished.
+1. **Start from their problem, not from the tool.** Every rollout started with what costs the user time today, in their words.
+2. **Describe the new workflow before you build it.** Who does what, on which screen, instead of which Excel file, mail or paper sheet. Show a mock-up first.
+3. **Set a date for the old way to stop.** Two systems side by side is the fastest way to kill a new tool. People keep the one they know.
+4. **Train with their own work.** Real leads, real projects, short videos, a colleague who uses it explaining it, not only the boss.
+5. **Follow up until they stop asking.** Collect every complaint, turn it into a small change, ship it within days, and tell the person it is done. Then measure use again.
 
-Then I counted rows in the production database:
+AI made step 5 cheap. A feedback point can be live the same week. That changes how people react: they see that their complaint changed the tool, so they send the next one.
 
-| Table | Rows |
-|---|---|
-| Wraps made | 1 |
-| Standard plan texts | 0 |
+## 1. The CRM: from notebook to phone
 
-The one wrap was my own test. The tool had never had a real user. With zero standard texts, it produced an empty appendix.
+**The problem.** Lead follow-up lived in each sales rep's head, agenda and notebook. The ERP starts when a sale is closed. Everything before that had no system, so leads were left lying without anyone deciding to.
 
-This had happened before in the same project. An older text library never got a screen to edit it. Its appendix stayed empty for months, and nobody saw that as a defect. The lesson I wrote down: **what can only be edited with hand-written SQL does not get edited.** That is why one of the last pull requests added an editing screen for the plan texts.
+**The new workflow.** The rep works on the phone at the client: photos and the visit report go in on site, the next step is a task, and one screen shows which clients have not heard from us in a month. The team agreed a short list of habits: log every call or mail, mark a lead as contacted after any human contact, plan the next step as a task.
 
-What the count changed: I did not close the project. The old engine still runs in production, and one work item stays open to remove it. It stays open until real users make real wraps.
+**What I did that was not code:**
 
-## Case two: a tutorial series past its limit
+- After a training in June, use rose and then fell back within four weeks. The conclusion: the software was not the problem anymore. Rollout, rhythm and consequence were.
+- I set a date, 7 September 2026, from which the CRM was the only place to follow up leads. I announced it in the trainings. Nothing was locked in the old system, so the date had to hold on agreement alone.
+- Two hands-on trainings in August with the reps' own leads, then the sales meeting. Fourteen short tutorial videos in Dutch and French, so a rep can learn alone.
+- I switched off 322 automatic tasks that almost nobody completed. The task list started empty, so every task in it meant something.
+- One weekly measure, in a Monday report: how many active leads were touched in the last 14 days.
+- Feedback became changes, round after round. June: 28 points from the training, 17 of them fixed in code. By 2 September: 49 changes done from one sales group's feedback and a training conversation. October: one sales rep sent 74 minutes of voice notes. They became 81 work items. On 17 November, 62 are done and the rep tests them on the phone.
 
-The CRM has a tutorial series for the sales team: 14 videos, in Dutch and French. The goal was that a sales rep can learn the CRM alone. The series had a limit of 20 minutes in total.
+**The result.** Daily use per sales rep went from about 2.5 to about 4.4 workdays per week around the start date. Between 19 October and 13 November it held at 3.9 to 4.3 days per week, with a median of 30 minutes per rep per day. All 7 active sales reps use it.
 
-An earlier note had warned that a 14th video would almost certainly break the limit. The 14th video was added anyway. Nobody checked the total after that.
+## 2. The calculators: from mail and WhatsApp to one screen
 
-I measured all 14 files on 3 August 2026. The Dutch series runs 20:20. The French series runs 20:22. Both are over the limit. The warning came true and was never noticed.
+**The problem.** For aluminium windows and doors, sales asked a product colleague for colour, handle and cylinder on every quote. The colour was written on the PDF by hand. Cylinders were ordered by mail or WhatsApp, so lines went missing on the invoice. The site crew called to ask which side was the outside.
 
-What the measurement changed: the question became a decision for me, not a background fact. The options are to drop the limit, shorten a video, or remove the 14th video.
+**The new workflow.** Colour, handle, cylinder and the outside view are in the calculator. The PDF is complete. The product colleague and the technical colleague give their input once, as configuration, instead of on every quote.
 
-The usage measurement below adds a second fact. On 21 October 2026, the academy module in the Hub was close to unused. A series that exists and is linked is still not a series that is watched.
+**What I did that was not code:**
 
-## Case three: daily use by the sales team
+- I sent the product colleague three groups of questions and asked for 15 minutes. I held back the rest on purpose, to not overload one person.
+- One live session on the design changed the scope: seven features added, three dropped.
+- Before a price change went live, the sales team was briefed first.
+- Feedback stays short-cycle. On 31 October the product colleague mailed five points. They became three work items, and the first was live on 6 November.
 
-I wanted to know if the sales team really works in the Hub and the CRM, or only logs in. The apps record visible-tab time and page views per user per day. I query them read-only.
+**The result.** Colleagues other than me saved 25 aluminium calculations per month on average from April to August. In September they saved 78, in October 75. Since September, 9 to 10 colleagues save aluminium calculations every month.
 
-Measured on 21 October 2026, over the last 30 days:
+## 3. The pre-analysis: from Excel and mail to one report
 
-- All 7 active sales reps use the CRM 4.0 to 4.6 workdays per week.
-- The median is 27 minutes per rep per active day.
-- Use jumped from about 2.5 to about 4.4 days per rep per week around 1 September 2026. That was the cutoff date for the old way of working.
-- In the Hub, sales mainly use the calculators and the pre-analysis tool.
-- Meetings, academy, checklists and the document vault were close to unused.
+**The problem.** After a contract was signed, sales handed the project to the project leader with an Excel sheet and a mail. The project leader laid the order form, the calculation and loose notes side by side. Once, a different inside height was almost produced wrong.
 
-The limits of this data are part of the result. Minutes come from a heartbeat every 30 seconds while the tab is visible. A tab left open still counts. A page view is not an action. So I read these figures as "people are there", not as "people do the work there".
+**The new workflow.** Sales fills in one structured pre-analysis after the signature. The tool checks the order form against the calculation and shows what is missing or different. The project leader gets one report in the document system.
 
-What the measurement changed: daily use of the CRM is now measured, not assumed. The modules with almost no use are a separate list. For those, the next question is why, not what to build next.
+**What I did that was not code:**
 
-## The pattern
+- A five-minute guide in Dutch and French for sales, project leaders and management.
+- The pre-analysis replaced the Excel handover for sold projects. The message to sales was honest: early bugs will happen, and the goal is a green light, not 100%.
+- In the first weeks, one colleague sent a long bug report in French. I split it into seven groups and fixed them in four days.
 
-In all three cases, the code was not the problem. The merge was clean and production was correct. What was missing was a real person using the thing. Only a count after the merge showed that.
+**The result.** Colleagues submitted 174 pre-analyses between June and October 2026, most of them by 7 sales reps. September alone had 53.
 
-The salon case (case 13) shows the same gap from the other side: the build took four days, the switch to daily use took seven weeks.
+## 4. After-sales: from a paper folder to a day planning
+
+**The problem.** Every working day, the planning admin put together a paper folder per team: the dossier report, the delivery note, a blank handover form, the plans and an evaluation form. When the planning changed, she printed it again. Her own words: this work has to stop. The data for one complaint was spread over four systems, and a person had to combine it by hand.
+
+**The new workflow.** An after-sales module in the Hub: a decision form per complaint, a day planning per team, and a mobile agenda for the technicians. Paper stays as the emergency fallback.
+
+**What I did that was not code:**
+
+- I sent the mock-up to the operations director before I built anything. Better to hear it now than after.
+- The agreement was clear: the service manager keeps working on paper until the Hub version is ready.
+- I sat down with the service manager and the planning admin. That one meeting gave 11 action items. Small things matter there: one place-name mix-up had cost more than two hours of driving.
+- The technicians sent a voice note with photos. It became 12 work items, live three days later.
+- One rule went back and forth. Technicians first saw only today and tomorrow, for privacy. In the field that did not work. Now they see the full week.
+
+**The result.** The day planning had 1 user in August, 7 in September and 9 in October. Days with use went from 2 in August to 49 in September and 76 in October.
+
+## The contrast: the one I skipped
+
+The Hub has a tool that puts the company cover page on supplier drawings. I built it, merged it and checked it in production. I did not agree a workflow with the project managers, and I set no date.
+
+On 17 November 2026 it had been used 5 times in three and a half months. Three of those were mine. The last use was on 6 October. The code is fine. Nobody changed how they work.
 
 ## What generalises
 
-- **The status of a feature is a database count, not a merge.** "Merged and verified in production" described the plan tool well. It still had one record.
-- **Count rows before you close a project.** One query on the production tables took minutes. It kept a project open that I was ready to close.
-- **A warning in a note is not a check.** The tutorial limit was written down and still broken. A limit only holds if something measures it again.
-- **No editing screen means no data.** If only a developer can fill a table, the table stays empty.
-- **State the limits of your usage data.** Visible-tab minutes show presence, not work. Say that next to the number.
-- **Measure, then decide what to build.** Real use moved my next step away from more features and toward asking users why.
+- **The tool is the easy part now.** AI shortens the build. It does not shorten the time people need to trust a new way of working.
+- **Name the old way and give it an end date.** Without a date, the Excel file wins.
+- **Let the user describe the problem.** "This work has to stop" is a better requirement than any feature list.
+- **Ship feedback within days and say so.** A complaint that changes the tool in the same week turns a critic into a tester.
+- **A colleague convinces better than a manager.** Let the people who use it explain it.
+- **Measure use, not merges.** A count in the database tells you if the rollout worked. The pull request does not.
 
 ---
 
@@ -80,10 +107,10 @@ The salon case (case 13) shows the same gap from the other side: the build took 
 
 - Names of colleagues, sales reps or clients
 - Per-person usage figures
-- CRM conversion or adoption rates
+- CRM conversion or follow-up rates
 - Prices, margins or revenue
 - Internal URLs, repository paths, table schemas and code
 
 ---
 
-**Plan wrapper and tutorial series measured:** 3 August 2026. **Daily use measured:** 21 October 2026, over 21 September to 20 October 2026. **Plan wrapper:** no real user on 3 August 2026. **Last updated:** 28 October 2026.
+**Usage measured:** 17 November 2026, on the production databases, read-only. **Monthly figures:** my own account and test accounts excluded. **Last updated:** 17 November 2026.
