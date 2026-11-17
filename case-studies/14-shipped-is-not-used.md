@@ -4,7 +4,7 @@
 >
 > - **Problem:** AI made building software fast. It did not make people change how they work. A tool that is merged and live can still sit unused next to the old Excel file, the notebook or the paper folder.
 > - **What changed:** For four internal tools I did the part that is not code. I explained the idea, agreed the new way of working with the people who do the work, set a date for the old way to stop, and then kept changing the tool on their feedback until they used it on their own.
-> - **Result:** The sales team now works in the CRM about 4 days a week. Calculator use by colleagues tripled. Operations plans the after-sales day in the Hub instead of on paper. Sales hands over sold projects through one structured report. The one tool where I skipped this work was used 5 times in three and a half months.
+> - **Result:** The sales team now works in the CRM about 4 days a week. Calculator use by colleagues tripled. Operations plans the after-sales day in the Hub instead of on paper, and customers sign the handover digitally. Sales hands over sold projects through one structured report. The one tool where I skipped this work was used 5 times in three and a half months.
 
 I build internal software for a building company with AI. The code is the fast part. This case study is about the slow part: getting people to use it, and keep using it, because it makes their own work easier.
 
@@ -56,16 +56,16 @@ AI made step 5 cheap. A feedback point can be live the same week. That changes h
 
 **The result.** Colleagues other than me saved 25 aluminium calculations per month on average from April to August. In September they saved 78, in October 75. Since September, 9 to 10 colleagues save aluminium calculations every month.
 
-## 3. The pre-analysis: from Excel and mail to one report
+## 3. The pre-analysis: from a Word file and mail to one report
 
-**The problem.** After a contract was signed, sales handed the project to the project leader with an Excel sheet and a mail. The project leader laid the order form, the calculation and loose notes side by side. Once, a different inside height was almost produced wrong.
+**The problem.** After a contract was signed, sales handed the project to the project leader with a Word file and a mail. The project leader laid the order form, the calculation and loose notes side by side. Once, a different inside height was almost produced wrong.
 
 **The new workflow.** Sales fills in one structured pre-analysis after the signature. The tool checks the order form against the calculation and shows what is missing or different. The project leader gets one report in the document system.
 
 **What I did that was not code:**
 
 - A five-minute guide in Dutch and French for sales, project leaders and management.
-- The pre-analysis replaced the Excel handover for sold projects. The message to sales was honest: early bugs will happen, and the goal is a green light, not 100%.
+- The pre-analysis replaced the Word handover for sold projects. The message to sales was honest: early bugs will happen, and the goal is a green light, not 100%.
 - In the first weeks, one colleague sent a long bug report in French. I split it into seven groups and fixed them in four days.
 
 **The result.** Colleagues submitted 174 pre-analyses between June and October 2026, most of them by 7 sales reps. September alone had 53.
@@ -74,7 +74,7 @@ AI made step 5 cheap. A feedback point can be live the same week. That changes h
 
 **The problem.** Every working day, the planning admin put together a paper folder per team: the dossier report, the delivery note, a blank handover form, the plans and an evaluation form. When the planning changed, she printed it again. Her own words: this work has to stop. The data for one complaint was spread over four systems, and a person had to combine it by hand.
 
-**The new workflow.** An after-sales module in the Hub: a decision form per complaint, a day planning per team, and a mobile agenda for the technicians. Paper stays as the emergency fallback.
+**The new workflow.** An after-sales module in the Hub: a decision form per complaint, a day planning per team, and a mobile agenda for the technicians. The blank paper handover form became a digital one. The customer signs it on screen or through a link. The Hub then files the signed PDF and the site photos in the dossier and mails the customer a copy. Paper stays as the emergency fallback.
 
 **What I did that was not code:**
 
@@ -85,6 +85,8 @@ AI made step 5 cheap. A feedback point can be live the same week. That changes h
 - One rule went back and forth. Technicians first saw only today and tomorrow, for privacy. In the field that did not work. Now they see the full week.
 
 **The result.** The day planning had 1 user in August, 7 in September and 9 in October. Days with use went from 2 in August to 49 in September and 76 in October.
+
+The digital handover form grew the same way. Colleagues made 9 in August, 27 in September and 56 in October. Customers signed 5, 15 and 43 of them. Between 1 and 17 November, colleagues made 31 more, and customers signed 25.
 
 ## The contrast: the one I skipped
 
