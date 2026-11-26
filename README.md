@@ -14,8 +14,8 @@ No source code from client work is published here. Each case study describes the
 
 | # | Project | What it does | Stack |
 |---|---|---|---|
-| [01](case-studies/01-semantic-memory-recall.md) | **Semantic Memory (`/recall`)** | Cohere-embedded, RAG-style search over 100K+ personal-knowledge chunks. Replaces grep for fuzzy concept lookup across rules, skills, and project notes. Auto-reindexes on session close. | Python · Cohere `embed-v4.0` + `rerank-v3.5` · numpy |
-| [02](case-studies/02-autonomous-multi-pr-pipelines.md) | **Autonomous Multi-PR Pipelines** | Roadmap-to-PR orchestration pattern: isolated feature branches, local checks, reviewer-agent gates, and human-owned merge decisions. | PowerShell · Claude Code · gh CLI · reviewer agents |
+| [01](case-studies/01-semantic-memory-recall.md) | **Semantic Memory (`/recall`)** | Cohere-embedded, RAG-style search over ~30,000 distinct personal-knowledge chunks. Replaces grep for fuzzy concept lookup across rules, skills, and project notes. Auto-reindexes on session close. | Python · Cohere `embed-v4.0` + `rerank-v3.5` · numpy |
+| [02](case-studies/02-autonomous-multi-pr-pipelines.md) | **Autonomous Multi-PR Pipelines** | Roadmap-to-PR orchestration pattern: isolated feature branches, local checks, reviewer-agent gates, and a merge gate that moved in November 2026: a rule-bound loop merges the low-risk pull requests, and I keep the risky ones. | PowerShell · Claude Code · gh CLI · reviewer agents |
 | [03](case-studies/03-customer-intelligence-layer.md) | **Customer Intelligence Layer** | PDF extraction pipeline that turns operational documents into comparable, queryable workflow data. Content-stream parser, no OCR. | Cloudflare Workers · D1 · TypeScript · custom PDF parser |
 | [04](case-studies/04-construction-erp-platform.md) | **Construction-Industry ERP Platform** | 14-module internal platform (core wave built in ~3 months): CRM, document signing, knowledge vault, customer intelligence, calculators. | Cloudflare Workers · D1 · Hono · React · Claude |
 | [05](case-studies/05-bilingual-sales-companion.md) | **Bilingual Sales Companion** | CRM with AI-classified leads, NL/FR workflows, vector related-record discovery, pipeline automation, and post-signature flows. | React · Zustand · React Query · D1 · Anthropic API |
@@ -48,26 +48,28 @@ No source code from client work is published here. Each case study describes the
 
 ## By the numbers
 
-All figures measured 11 November 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 255 days).
+All figures measured 26 November 2026 against my own repos and GitHub account (first commit in this body of work: 1 March 2026 — 270 days).
 
-| Metric | Value | Change since 15 October |
+| Metric | Value | Change since 11 November |
 |---|---|---|
-| Merged pull requests | 3,039 (of 3,117 opened — 97%) | +350 |
-| Commits I authored, on default branches | 6,740 across 51 repositories | +462 commits, +8 repositories |
-| Production D1 database migrations (forward-only) | 481 | +28 |
-| Reusable AI skills that still load | 23 | +2 since the 28 October count of 21. Down from 275 before both skill packs were retired on 24 October, see case 17 |
-| Production services under 24/7 synthetic monitoring | 8 | not re-counted — carried forward from 25 August |
-| Semantic memory corpus | 125,659 chunks across 12,445 files | +18,864 chunks. The index scope only got smaller, see below |
+| Merged pull requests | 3,459 (of 3,532 opened — 98%) | +420 |
+| Commits I authored, on default branches | 7,141 across 52 repositories | +401 commits, +1 repository |
+| Production D1 database migrations (forward-only) | 514 | +33 |
+| Reusable AI skills that still load | 25 | +2. Down from 275 before both skill packs were retired on 24 October, see case 17 |
+| Production checks under 24/7 synthetic monitoring | 12 | counted this time, in the target list of the monitor. The 8 published until now was carried forward from 25 August |
+| Semantic memory corpus | 29,935 chunks across 3,393 files | −95,724 chunks. Correction: about three quarters of the 11 November count were copies, see below |
 
-How each is counted: merged PRs from the GitHub Search API across my account; commits from the GitHub GraphQL API, default branch only, filtered to commits authored by my account; migrations as the forward-only `.sql` files in a `migrations/` folder on each repository's default branch, excluding `.down.sql` rollbacks; skills as the skill folders that still load; the memory corpus counted directly in the live embedding index (last rebuilt 10 November).
+How each is counted: merged PRs from the GitHub Search API across my account; commits from the GitHub GraphQL API, default branch only, filtered to commits authored by my account; migrations as the forward-only `.sql` files in a `migrations/` folder on each repository's default branch, excluding `.down.sql` rollbacks; skills as the skill folders that still load; monitoring as the entries in the target list of the monitor; the memory corpus counted directly in the live embedding index (last written 26 November).
 
-No counting method changed since 15 October, so every row carries a delta. Commits: most repositories moved to a GitHub organisation on 16 September, and the organisation also holds code that colleagues and contractors write. The count asks GitHub directly and keeps only my own commits — 6,740 of the 8,994 on those default branches. Migrations: every file is counted from scratch. Two repositories with migrations are left out because someone else wrote that code. Memory corpus: since 15 October the index stopped reading three sources (the retired skill packs, blind acceptance tests and private chat exports), so the growth comes from new files, not from a wider scope.
+**Correction to the memory corpus.** On 11 November this page said 125,659 chunks. That count was right, and it was misleading. The index held the same documents several times: in release folders, in build outputs and in parallel git checkouts. The same day I removed the copies. The index went from 122,880 chunks to 29,841, and no distinct text left it. So the real size was never above about 30,000 distinct chunks. The 106,795 of 15 October was counted the same way and holds copies too. I did not go back to measure how many.
 
-As a check, the same queries limited to 15 October give 2,697 merged PRs, 6,288 commits and 454 migrations. That is within 0.4% of the figures published that day, because the first count ran during the day.
+Monitoring: the 12 checks run on 11 addresses, because two checks read the same health response.
 
-Monitoring is still carried forward: counting it needs a manual look, not a command.
+As a check, the same queries limited to 11 November give 3,056 merged PRs, 6,716 commits in 52 repositories and 482 migrations. The PR figure is 0.6% above the figure published that day, because that count ran in the morning. The migration figure is 1 above the published 481. The commit figure is 24 below the published 6,740, with one repository more. I could not find the cause of that gap. Against the check, the growth is +425 commits and no new repository.
 
-Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. And 3,039 PRs ≠ 3,039 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
+Commits: most repositories sit in GitHub organisations that also hold code that colleagues and contractors write. The count asks GitHub directly and keeps only my own commits — 7,141 of the 10,196 on those default branches. Migrations: every file is counted from scratch. Two repositories with migrations are left out because someone else wrote that code.
+
+Honest framing: commits are AI-co-authored (Claude/Codex) with a single human operator — that *is* the claim, not a caveat. PRs pass CI gates (typecheck, lint, tests, security scans) plus adversarial AI review; there is no second human reviewer. Since 21 November a rule-bound loop merges part of them without me: 26 so far, see [case 02](case-studies/02-autonomous-multi-pr-pipelines.md). And 3,459 PRs ≠ 3,459 features — the number demonstrates cadence and process discipline; the case studies demonstrate substance.
 
 ---
 

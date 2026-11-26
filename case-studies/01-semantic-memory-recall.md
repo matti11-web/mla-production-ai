@@ -8,7 +8,7 @@
 
 A single-file semantic search index that lets me find what I wrote three months ago by *concept*, not keyword. Built because grep was missing things that mattered.
 
-**Status:** In active daily use against my own personal corpus (memory + rules + skills + project dev-docs). The figures in this case study are as of 1 September 2026: 20,927 chunks across 2,600 files. On 20 September 2026 the index scope widened to the project documentation of every track, so the current count is larger: 106,795 chunks across 10,681 files as of 15 October 2026 (see [By the numbers](../README.md#by-the-numbers)). Cohere `embed-v4.0` (1,536-dim) for embedding, optional `rerank-v3.5` for high-precision queries, numpy for brute-force cosine similarity.
+**Status:** In active daily use against my own personal corpus (memory + rules + skills + project dev-docs). The figures in this case study are as of 1 September 2026: 20,927 chunks across 2,600 files. On 20 September 2026 the index scope widened to the project documentation of every track, and the count rose to 106,795 chunks across 10,681 files on 15 October 2026. Correction of 26 November 2026: most of that growth was the same documents indexed several times. After I removed the copies on 11 November, the index holds 29,935 distinct chunks across 3,393 files (see [By the numbers](../README.md#by-the-numbers)). Cohere `embed-v4.0` (1,536-dim) for embedding, optional `rerank-v3.5` for high-precision queries, numpy for brute-force cosine similarity.
 
 ---
 

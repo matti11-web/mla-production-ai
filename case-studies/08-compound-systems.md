@@ -55,7 +55,7 @@ For a small company this inverts the usual build-vs-buy logic. Five separate Saa
 
 - **Single operator.** One person orchestrates this. The flow above is repeatable, but it is not (yet) a process others in the organisation trigger themselves.
 - **Human gates are load-bearing.** Externally-visible output goes through review. Removing those gates would make the flow faster and worse.
-- **Composition is fragile at the edges.** When one system changes its data shape, downstream steps degrade quietly. Monitoring (8 production services under synthetic checks) catches outages, not semantic drift — that's an open problem.
+- **Composition is fragile at the edges.** When one system changes its data shape, downstream steps degrade quietly. Monitoring (12 synthetic checks on production services) catches outages, not semantic drift — that's an open problem.
 
 ---
 
